@@ -5,3 +5,5 @@ Jaden Geller's Compiler Project for CS 81 at Caltech
 - [Assemble](https://github.com/JadenGeller/Assemble)
 - [Parsley](https://github.com/JadenGeller/Parsley)
 - [Expressive](https://github.com/JadenGeller/Expressive)
+- [Gluey](https://github.com/JadenGeller/Gluey)
+- [Aximoatic](https://github.com/JadenGeller/Axiomatic)
