@@ -7,3 +7,4 @@ Jaden Geller's Compiler Project for CS 81 at Caltech
 - [Expressive](https://github.com/JadenGeller/Expressive) - Interpreter
 - [Gluey](https://github.com/JadenGeller/Gluey) - Unification
 - [Aximoatic](https://github.com/JadenGeller/Axiomatic) - Logic
+- [Typist](https://github.com/JadenGeller/Axiomatic) - Typechecking
