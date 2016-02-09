@@ -1,5 +1,5 @@
 # CS-81-Project
-Jaden Geller's Compiler Project for CS 81 at Caltech
+The goal of this project is to build a programming language entirely from scratch (e.g. building the parsing libraries, the type checker, etc.) that has a strong type system and eventually compiles down to LLVM IR.
 
 ## Parsing
 The language syntax will be largely inspired by Haskell and Swift. The current plan is to whitespace delimit function application (as Haskell does). Eventually, things like infix operators ought to be supported, but this is low priority as it is not a major area of exploration for the project.
