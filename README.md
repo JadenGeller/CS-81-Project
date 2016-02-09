@@ -13,7 +13,7 @@ A major focus of this project will be implementing features found in strong type
 
 [Axiomatic](https://github.com/JadenGeller/Axiomatic) builds onto of Gluey to form a logic layer on top of the unification framework. Essentially, it implements the tree-like term structures that are needed to represent complex relations. It was largely inspired by Prolog, and implements what's required to build complex [logical formulas](https://en.wikipedia.org/wiki/Horn_clause). 
 
-[Typist](https://github.com/JadenGeller/Axiomatic) is an abstraction built atop Axiomatic that allows for the annotation of types directly in the abstract syntax tree. The abstract syntax tree must only be partially annotated with types, and Typist will generate the logical clauses necessary to determine the rest of the types. This stage is necessary not only for type checking, but for determining the types of each subexpression for purposes of name mangling.
+[Typist](https://github.com/JadenGeller/Typist) is an abstraction built atop Axiomatic that allows for the annotation of types directly in the abstract syntax tree. The abstract syntax tree must only be partially annotated with types, and Typist will generate the logical clauses necessary to determine the rest of the types. This stage is necessary not only for type checking, but for determining the types of each subexpression for purposes of name mangling.
 
 ## Executing
 Though the eventual goal of this language is to compile down to LLVM IR, the immediate goal is to be interpreted since this will be easier to implement. Once more about the language is determined (after experimenting with the typesystem and such), then the focus will shift to generating the IR bitcode. For now though, the language will be interpreted.
