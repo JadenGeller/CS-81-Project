@@ -15,7 +15,7 @@ A major focus of this project will be implementing features found in strong type
 
 [Typist](https://github.com/JadenGeller/Axiomatic) is an abstraction built atop Axiomatic that allows for the annotation of types directly in the abstract syntax tree. The abstract syntax tree must only be partially annotated with types, and Typist will generate the logical clauses necessary to determine the rest of the types. This stage is necessary not only for type checking, but for determining the types of each subexpression for purposes of name mangling.
 
-## Interpretation
+## Executing
 Though the eventual goal of this language is to compile down to LLVM IR, the immediate goal is to be interpreted since this will be easier to implement. Once more about the language is determined (after experimenting with the typesystem and such), then the focus will shift to generating the IR bitcode. For now though, the language will be interpreted.
 
 [Expressive](https://github.com/JadenGeller/Expressive) is the lambda-supporting interpreter that will be used for the language. It was written with simplicity, not speed, in mind. Currently, it models an imperative language only with record types, but it also supports features like lambdas and recursion.
