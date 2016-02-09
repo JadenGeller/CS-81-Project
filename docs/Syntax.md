@@ -6,3 +6,5 @@ let append = (array :: inout Array a) -> (element :: a) -> {
   {- do stuff -}
 }
 ```
+
+More details will be provided as this is finalized over the upcoming weeks.
