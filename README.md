@@ -4,7 +4,7 @@ The goal of this project is to build a programming language entirely from scratc
 ## Parsing
 The language syntax will be largely inspired by Haskell and Swift. The current plan is to whitespace delimit function application (as Haskell does). Eventually, things like infix operators ought to be supported, but this is low priority as it is not a major area of exploration for the project.
 
-[Spork](https://github.com/JadenGeller/Spork) provides the ability to efficiently duplicate abritrary generators while maintining independent state. This is useful for backtracking, since it allows the previous state to be saved and later restored if this search path doesn't work out.
+[Spork](https://github.com/JadenGeller/Spork) provides the ability to efficiently duplicate arbitrary generators while maintining independent state. This is useful for backtracking, since it allows the previous state to be saved and later restored if this search path doesn't work out.
 
 [Parsley](https://github.com/JadenGeller/Parsley), a recursive descent parsing library, will be used for the parsing stage of the compilation process. Parsley is built on top of Spork to provide backtracking capabilities. Parsley is built with ease-of-use in mind rather than parsing speed (as compilation speed is not a focus of the project). Parsley defines many primitive parsers and parser combinators that can be combined to form complex parsers. It will be used for both the lexing and the parsing stages.
 
