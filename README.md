@@ -8,7 +8,7 @@ The language [*syntax*](https://github.com/JadenGeller/CS-81-Project/blob/master
 
 [**Parsley**](https://github.com/JadenGeller/Parsley), a recursive descent parsing library, will be used for the parsing stage of the compilation process. Parsley is built on top of Spork to provide backtracking capabilities. Parsley is built with ease-of-use in mind rather than parsing speed (as compilation speed is not a focus of the project). Parsley defines many primitive parsers and parser combinators that can be combined to form complex parserlits. It will be used for both the lexing and the parsing stages.
 
-Parsing will be divided into two phases: a lexing phase in which the input will be tokenized, [*literal values*](https://github.com/JadenGeller/CS-81-Project/blob/master/docs/Literals.md) will be parsed, and whitespace will be discared, and a parsing phase in which the stream of tokens will be transformed into the abstract syntax tree of the program.
+Parsing will be divided into two phases: a lexing phase in which the input will be tokenized, [*literal values*](https://github.com/JadenGeller/CS-81-Project/blob/master/docs/Literals.md) will be parsed, and whitespace will be discared, and a parsing phase in which the stream of tokens will be transformed into the [*abstract syntax tree*](https://github.com/JadenGeller/CS-81-Project/blob/master/docs/AST.md) of the program.
 
 ## Type Checking
 A major focus of this project will be implementing features found in strong type systems as well as exploring novel systems. As such, a large amount of time has been devoted to this stage of compilation. I've written three frameworks thus far, each building on top of the previous, that provide abstractions that enable the implementation of complex type systems.
