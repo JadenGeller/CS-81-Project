@@ -2,13 +2,13 @@
 The goal of this project is to build a programming language entirely from scratch (e.g. building the parsing libraries, the type checker, etc.) that has a strong type system and eventually compiles down to LLVM IR.
 
 ## Parsing
-The language [syntax](https://github.com/JadenGeller/CS-81-Project/blob/master/docs/Syntax.md) will be largely inspired by Haskell and Swift. The current plan is to whitespace delimit function application (as Haskell does). Eventually, things like infix operators ought to be supported, but this is low priority as it is not a major area of exploration for the project.
+The language [*syntax*](https://github.com/JadenGeller/CS-81-Project/blob/master/docs/Syntax.md) will be largely inspired by Haskell and Swift. The current plan is to whitespace delimit function application (as Haskell does). Eventually, things like infix operators ought to be supported, but this is low priority as it is not a major area of exploration for the project.
 
 [**Spork**](https://github.com/JadenGeller/Spork) provides the ability to efficiently duplicate arbitrary generators while maintining independent state. This is useful for backtracking, since it allows the previous state to be saved and later restored if this search path doesn't work out.
 
 [**Parsley**](https://github.com/JadenGeller/Parsley), a recursive descent parsing library, will be used for the parsing stage of the compilation process. Parsley is built on top of Spork to provide backtracking capabilities. Parsley is built with ease-of-use in mind rather than parsing speed (as compilation speed is not a focus of the project). Parsley defines many primitive parsers and parser combinators that can be combined to form complex parserlits. It will be used for both the lexing and the parsing stages.
 
-Parsing will be divided into two phases: a lexing phase in which the input will be tokenized, [literal values](https://github.com/JadenGeller/CS-81-Project/blob/master/docs/Literals.md) will be parsed, and whitespace will be discared, and a parsing phase in which the stream of tokens will be transformed into the abstract syntax tree of the program.
+Parsing will be divided into two phases: a lexing phase in which the input will be tokenized, [*literal values*](https://github.com/JadenGeller/CS-81-Project/blob/master/docs/Literals.md) will be parsed, and whitespace will be discared, and a parsing phase in which the stream of tokens will be transformed into the abstract syntax tree of the program.
 
 ## Type Checking
 A major focus of this project will be implementing features found in strong type systems as well as exploring novel systems. As such, a large amount of time has been devoted to this stage of compilation. I've written three frameworks thus far, each building on top of the previous, that provide abstractions that enable the implementation of complex type systems.
