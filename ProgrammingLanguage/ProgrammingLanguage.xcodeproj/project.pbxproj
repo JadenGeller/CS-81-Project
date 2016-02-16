@@ -7,63 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D82EC051C0529D8002CAE07 /* Assemble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D82EC021C0529D8002CAE07 /* Assemble.framework */; };
-		4D82EC061C0529D8002CAE07 /* Parsley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D82EC031C0529D8002CAE07 /* Parsley.framework */; };
-		4D82EC071C0529D8002CAE07 /* Spork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D82EC041C0529D8002CAE07 /* Spork.framework */; };
 		4DBB3E481BDE687F00A821A1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBB3E471BDE687F00A821A1 /* main.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		4D82EC0E1C052A4E002CAE07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D82EC081C052A4E002CAE07 /* Assemble.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4D52C91D1BD38A0D0019EBED;
-			remoteInfo = Assemble;
-		};
-		4D82EC101C052A4E002CAE07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D82EC081C052A4E002CAE07 /* Assemble.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4D52C9271BD38A0D0019EBED;
-			remoteInfo = AssembleTests;
-		};
-		4D82EC121C052A4E002CAE07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D82EC081C052A4E002CAE07 /* Assemble.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4D52C93D1BD38E310019EBED;
-			remoteInfo = AssembleExample;
-		};
-		4D82EC231C052A58002CAE07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D82EC1E1C052A58002CAE07 /* Spork.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4D0E2BCE1BCCC20B00826435;
-			remoteInfo = Spork;
-		};
-		4D82EC251C052A58002CAE07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D82EC1E1C052A58002CAE07 /* Spork.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4D0E2BD81BCCC20B00826435;
-			remoteInfo = SporkTests;
-		};
-		4D82EC2C1C052A5C002CAE07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D82EC271C052A5C002CAE07 /* Parsley.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4D0E2BFB1BCCD39D00826435;
-			remoteInfo = Parsley;
-		};
-		4D82EC2E1C052A5C002CAE07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D82EC271C052A5C002CAE07 /* Parsley.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4D0E2C051BCCD39D00826435;
-			remoteInfo = ParsleyTests;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		4DBB3E421BDE687F00A821A1 /* CopyFiles */ = {
@@ -78,12 +23,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4D82EC021C0529D8002CAE07 /* Assemble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Assemble.framework; path = ../Carthage/Build/Mac/Assemble.framework; sourceTree = "<group>"; };
-		4D82EC031C0529D8002CAE07 /* Parsley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parsley.framework; path = ../Carthage/Build/Mac/Parsley.framework; sourceTree = "<group>"; };
-		4D82EC041C0529D8002CAE07 /* Spork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spork.framework; path = ../Carthage/Build/Mac/Spork.framework; sourceTree = "<group>"; };
-		4D82EC081C052A4E002CAE07 /* Assemble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Assemble.xcodeproj; path = ../Carthage/Checkouts/Assemble/Assemble/Assemble.xcodeproj; sourceTree = "<group>"; };
-		4D82EC1E1C052A58002CAE07 /* Spork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Spork.xcodeproj; path = ../Carthage/Checkouts/Spork/Spork/Spork.xcodeproj; sourceTree = "<group>"; };
-		4D82EC271C052A5C002CAE07 /* Parsley.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parsley.xcodeproj; path = "/Users/jadengeller/Documents/Code/CS81/CS-81-Project/Carthage/Checkouts/Assemble/Assemble/../../Parsley/Parsley/Parsley.xcodeproj"; sourceTree = "<absolute>"; };
 		4DBB3E441BDE687F00A821A1 /* ProgrammingLanguage */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ProgrammingLanguage; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBB3E471BDE687F00A821A1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,54 +32,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D82EC051C0529D8002CAE07 /* Assemble.framework in Frameworks */,
-				4D82EC071C0529D8002CAE07 /* Spork.framework in Frameworks */,
-				4D82EC061C0529D8002CAE07 /* Parsley.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4D82EC091C052A4E002CAE07 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4D82EC0F1C052A4E002CAE07 /* Assemble.framework */,
-				4D82EC111C052A4E002CAE07 /* AssembleTests.xctest */,
-				4D82EC131C052A4E002CAE07 /* AssembleExample */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		4D82EC1F1C052A58002CAE07 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4D82EC241C052A58002CAE07 /* Spork.framework */,
-				4D82EC261C052A58002CAE07 /* SporkTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		4D82EC281C052A5C002CAE07 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4D82EC2D1C052A5C002CAE07 /* Parsley.framework */,
-				4D82EC2F1C052A5C002CAE07 /* ParsleyTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		4DBB3E3B1BDE687F00A821A1 = {
 			isa = PBXGroup;
 			children = (
 				4DBB3E461BDE687F00A821A1 /* ProgrammingLanguage */,
 				4DBB3E451BDE687F00A821A1 /* Products */,
-				4D82EC271C052A5C002CAE07 /* Parsley.xcodeproj */,
-				4D82EC1E1C052A58002CAE07 /* Spork.xcodeproj */,
-				4D82EC081C052A4E002CAE07 /* Assemble.xcodeproj */,
-				4D82EC021C0529D8002CAE07 /* Assemble.framework */,
-				4D82EC031C0529D8002CAE07 /* Parsley.framework */,
-				4D82EC041C0529D8002CAE07 /* Spork.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,78 +107,12 @@
 			mainGroup = 4DBB3E3B1BDE687F00A821A1;
 			productRefGroup = 4DBB3E451BDE687F00A821A1 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 4D82EC091C052A4E002CAE07 /* Products */;
-					ProjectRef = 4D82EC081C052A4E002CAE07 /* Assemble.xcodeproj */;
-				},
-				{
-					ProductGroup = 4D82EC281C052A5C002CAE07 /* Products */;
-					ProjectRef = 4D82EC271C052A5C002CAE07 /* Parsley.xcodeproj */;
-				},
-				{
-					ProductGroup = 4D82EC1F1C052A58002CAE07 /* Products */;
-					ProjectRef = 4D82EC1E1C052A58002CAE07 /* Spork.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				4DBB3E431BDE687F00A821A1 /* ProgrammingLanguage */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4D82EC0F1C052A4E002CAE07 /* Assemble.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Assemble.framework;
-			remoteRef = 4D82EC0E1C052A4E002CAE07 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4D82EC111C052A4E002CAE07 /* AssembleTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = AssembleTests.xctest;
-			remoteRef = 4D82EC101C052A4E002CAE07 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4D82EC131C052A4E002CAE07 /* AssembleExample */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = AssembleExample;
-			remoteRef = 4D82EC121C052A4E002CAE07 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4D82EC241C052A58002CAE07 /* Spork.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Spork.framework;
-			remoteRef = 4D82EC231C052A58002CAE07 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4D82EC261C052A58002CAE07 /* SporkTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SporkTests.xctest;
-			remoteRef = 4D82EC251C052A58002CAE07 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4D82EC2D1C052A5C002CAE07 /* Parsley.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Parsley.framework;
-			remoteRef = 4D82EC2C1C052A5C002CAE07 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4D82EC2F1C052A5C002CAE07 /* ParsleyTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ParsleyTests.xctest;
-			remoteRef = 4D82EC2E1C052A5C002CAE07 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4DBB3E401BDE687F00A821A1 /* Sources */ = {
