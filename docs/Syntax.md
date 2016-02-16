@@ -26,3 +26,33 @@ let sorted = (unsorted :: Array a) -> {
 ```
 
 More details will be provided as this is finalized over the upcoming weeks.
+
+## Examples
+
+```haskell
+speak := \-> debugPrint "Hi"
+
+square := x -> x * x :: Int
+
+double := (x :: Int | Float) -> x + x :: Int
+
+identity := (x :: 'A) -> x :: 'A
+
+concat := (lhs :: String) -> (rhs :: String) -> copy in {
+	mutable copy := lhs
+	rhs.forEach (c -> copy.append c)
+} :: String
+
+factorial1 := (x :: Int) -> result in {
+	mutable x := x
+	mutable result := 1
+	while (\-> x > 0) (\-> result.set (result * x))
+} :: Int
+
+factorial2 := (x :: Int) -> result in {
+	mutable result := 1
+	(range 1 x).forEach (x -> result.set (result * x))
+}
+
+factorial3 := (x :: Int) -> if (x = 0) (\-> 1) (\-> x * factorial (x - 1))
+```
