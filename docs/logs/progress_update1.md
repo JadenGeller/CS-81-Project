@@ -2,7 +2,7 @@
 
 ## Type Checking
 
-I wrote a nice [README](https://github.com/JadenGeller/Typist/blob/master/README.md) for the AST typechecker, so check it out!
+I wrote a nice [README](https://github.com/JadenGeller/Typist/blob/master/README.md) for the AST typechecker, so check it out! Note that the typechecker is still very much a work in progress, so that document describes the current state of things, but also mentions things that might change (even calling some weird behavior out).
 
 ## Parsing
 
