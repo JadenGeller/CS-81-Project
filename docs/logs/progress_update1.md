@@ -1,5 +1,9 @@
 # Progress Update
 
+## Type Checking
+
+I wrote a nice [README](https://github.com/JadenGeller/Typist/blob/master/README.md) for the AST typechecker, so check it out!
+
 ## Parsing
 
 The major focus lately has been on parsing. I hit a few roadblocks while working on the parser for the language grammar, specifically
@@ -139,6 +143,6 @@ sequencedBlockReturn = "return" #CRITICAL looselyBoundExpression break
 
 The parser combinator libarary is getting so large that I feel very enticed to split it into multiple smaller modules. I spent a while thinking about this---twice actuallys splitting it up and then backtracking (LOL) changing my mind. I just haven't thought of a really clean way to split it up (which might imply that it isn't suitable to split into two libraries). My latest idea is that language specific parser combinators (such as the infix operator parser) ought to be in a separate, more specialized library. But I'm still not sure that's a great idea, and I think I've probably wasted too much time already being indecisive on this.
 
-## Conclusion
+# Conclusion
 
 I feel like I've spent more time on parsing than I'm comfortable with given the other areas I'd much rather explore. I'm definitely behind where I'd like to be, but not for a lack of hours spent on the project, but rather because of these few roadblocks I've faced. I'd like to very quickly wrap up parsing and move onto more interesting typechecking. I believe that I'm still on track to have a fibonnacci program parsed, typechecked, and interpreted by the end of the term, so that is the goal I will use to keep me on track. My strect goal is to have a mutation model in place for the language as well by the end of the term. As a reminder, I do plan on continuing with this project through third term, but I obvsiouly want to get to a point where I can focus on more advanced or experimental features by then.
