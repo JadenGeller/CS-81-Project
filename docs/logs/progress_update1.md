@@ -84,6 +84,11 @@ Since my parsing library is general source (generic in the types it will parse r
 
 ### Language Grammar
 
+#### Confusions
+I spent a long time confused as to how I should parse parameter declarations for lambdas. At first, I was considering making `->` and `::` be normal operators in the language such that `(x :: Int) -> x + 1` doesn't have any weird special rules, but I realized after feeling stumped about it for a long time that wouldn't be a good idea. On one hand, it could be reasonable to do a first pass on the parsing where we approximate those symbols are *real* operators, but that prevents us from later introducing things like argument annotations, such as `(@inout x :: Int)`. Perhaps if we parsed it just as a normal S-expression, we wouldn't have any issues, and then we could later transform it to something more useful? I'm not sure how that'd work, but I eventually decided against this sort of behavior and, once I understood how the special case should behave with the other infix operators, I decided that it would be better to threat it differently than other operators.
+
+#### Decisions
+
 After studying the Swift grammar, I decided that I finally understood well enough how to write the grammar for my own language. First, let's discuss a few syntactic choices I'll be making for the time being to simplify the grammar. 
 
 A lambda will either be type annotated and surrounded with parenthesis or completely unattotated. Regardless, the lamda with begin with a backslash.
