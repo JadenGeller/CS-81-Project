@@ -72,7 +72,7 @@ try directive.parse("director blah".characters)  // This will fail! We failed ou
 try directive.parse("directive blah".characters) // This will return in `nil` since we backtracked to `optional`.
 ```
 
-I spent a good while studying the Swift grammar [https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/swift/grammar/parameter-list] as well when I had trouble writing a parser for my language. I learned that we really ought to start important structures with uniquely identifiable sequences such as `function` or `enum` or `let` so that we can use critical sections for their failures and actually provide good error messages.
+I spent a good while studying the [Swift grammar] (https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/swift/grammar/parameter-list) as well when I had trouble writing a parser for my language. I learned that we really ought to start important structures with uniquely identifiable sequences such as `function` or `enum` or `let` so that we can use critical sections for their failures and actually provide good error messages.
 
 ### Better Error Reporting
 
