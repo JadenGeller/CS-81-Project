@@ -129,6 +129,6 @@ sequencedBlock = "{" #CRITICAL many(constantDeclaration, separatedBy: break) seq
 sequencedBlockReturn = "return" #CRITICAL looselyBoundExpression break
 ```
 
-### Splitting Parser Combinator
+### Splitting Modules
 
 The parser combinator libarary is getting so large that I feel very enticed to split it into multiple smaller modules. I spent a while thinking about this---twice actuallys splitting it up and then backtracking (LOL) changing my mind. I just haven't thought of a really clean way to split it up (which might imply that it isn't suitable to split into two libraries). My latest idea is that language specific parser combinators (such as the infix operator parser) ought to be in a separate, more specialized library. But I'm still not sure that's a great idea, and I think I've probably wasted too much time already being indecisive on this.
