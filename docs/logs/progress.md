@@ -98,7 +98,7 @@ Note that we will not use semicolons to delimit statements. Instead, we'll use n
 
 The following is the considered grammar. Note that the working of infix operators are not discussed as their precedence is handled by the parsing library.
 
-```swift
+```
 break = "\n" // tokenize such that ignore duplicates in sequence 
 
 program = many(constantDeclaration, separatedBy: break)
