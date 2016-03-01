@@ -6,7 +6,8 @@ The major focus lately has been on parsing. I hit a few roadblocks while working
 - The language syntax was badly designed such that error reporting is hard.
 - The parser combinator's implict backtracking was makes error reporting hard.
 - The parser doesn't have a mechanism to deal with line nubmers.
-I will address the progress I made in these areas in the sections below.
+
+I will address the progress I made in these areas in the sections below. Additionally, we'll discuss a brand new feature of the parser combinator, infix operators!
 
 ### Infix Operators
 
