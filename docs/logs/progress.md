@@ -75,7 +75,7 @@ I wanted to improve the error reporting of the parser library, so I rewrote the 
 
 Since my parsing library is general source (generic in the types it will parse rather than specially built to parse text), it doesn't make sense for it to track the column numbers of the text (since that requires knowing about the new line character which is special to text). Instead, I'll be tracking the index of the character during parsing, and I'll make a second pass over the file to determine the relevant column when handling an error thrown from the parsing library.
 
-### Wrote Language Grammar
+### Language Grammar
 
 After studying the Swift grammar, I decided that I finally understood well enough how to write the grammar for my own language. First, let's discuss a few syntactic choices I'll be making for the time being to simplify the grammar. 
 
