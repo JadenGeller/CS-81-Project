@@ -2,6 +2,12 @@
 
 ## Parsing
 
+The major focus lately has been on parsing. I hit a few roadblocks while working on the parser for the language grammar, specifically
+- The language syntax was badly designed such that error reporting is hard.
+- The parser combinator's implict backtracking was makes error reporting hard.
+- The parser doesn't have a mechanism to deal with line nubmers.
+I will address the progress I made in these areas in the sections below.
+
 ### Infix Operators
 
 I improved the parsing library to easily support infix operators. At first, I just built a hard-coded example that supports 4 levels of precedence. Then, I abstracted this to work with arbitary levels of precedence, and I think the result turned out really nice!
@@ -123,3 +129,6 @@ sequencedBlock = "{" #CRITICAL many(constantDeclaration, separatedBy: break) seq
 sequencedBlockReturn = "return" #CRITICAL looselyBoundExpression break
 ```
 
+### Splitting Parser Combinator
+
+The parser combinator libarary is getting so large that I feel very enticed to split it into multiple smaller modules. I spent a while thinking about this---twice actuallys splitting it up and then backtracking (LOL) changing my mind. I just haven't thought of a really clean way to split it up (which might imply that it isn't suitable to split into two libraries). My latest idea is that language specific parser combinators (such as the infix operator parser) ought to be in a separate, more specialized library. But I'm still not sure that's a great idea, and I think I've probably wasted too much time already being indecisive on this.
