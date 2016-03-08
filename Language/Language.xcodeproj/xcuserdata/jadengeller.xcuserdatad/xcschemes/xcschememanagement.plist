@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ProgrammingLanguage.xcscheme</key>
+		<key>Language.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4DBB3E431BDE687F00A821A1</key>
+		<key>4DA9CC7A1C7C034400D004BF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4DA9CC841C7C034400D004BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0710"
+   LastUpgradeVersion = "0720"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4DBB3E431BDE687F00A821A1"
-               BuildableName = "ProgrammingLanguage"
-               BlueprintName = "ProgrammingLanguage"
-               ReferencedContainer = "container:ProgrammingLanguage.xcodeproj">
+               BlueprintIdentifier = "4DA9CC7A1C7C034400D004BF"
+               BuildableName = "Language.framework"
+               BlueprintName = "Language"
+               ReferencedContainer = "container:Language.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,14 +28,24 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4DA9CC841C7C034400D004BF"
+               BuildableName = "LanguageTests.xctest"
+               BlueprintName = "LanguageTests"
+               ReferencedContainer = "container:Language.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4DBB3E431BDE687F00A821A1"
-            BuildableName = "ProgrammingLanguage"
-            BlueprintName = "ProgrammingLanguage"
-            ReferencedContainer = "container:ProgrammingLanguage.xcodeproj">
+            BlueprintIdentifier = "4DA9CC7A1C7C034400D004BF"
+            BuildableName = "Language.framework"
+            BlueprintName = "Language"
+            ReferencedContainer = "container:Language.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -51,16 +61,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4DBB3E431BDE687F00A821A1"
-            BuildableName = "ProgrammingLanguage"
-            BlueprintName = "ProgrammingLanguage"
-            ReferencedContainer = "container:ProgrammingLanguage.xcodeproj">
+            BlueprintIdentifier = "4DA9CC7A1C7C034400D004BF"
+            BuildableName = "Language.framework"
+            BlueprintName = "Language"
+            ReferencedContainer = "container:Language.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4DBB3E431BDE687F00A821A1"
-            BuildableName = "ProgrammingLanguage"
-            BlueprintName = "ProgrammingLanguage"
-            ReferencedContainer = "container:ProgrammingLanguage.xcodeproj">
+            BlueprintIdentifier = "4DA9CC7A1C7C034400D004BF"
+            BuildableName = "Language.framework"
+            BlueprintName = "Language"
+            ReferencedContainer = "container:Language.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

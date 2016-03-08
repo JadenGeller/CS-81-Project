@@ -8,56 +8,7 @@
 
 import Parsley
 
-enum Sign: Character {
-    case Negative = "-"
-    case Positive = "+"
-}
 
-extension Sign: Matchable {
-    static var all: [Sign] = [.Negative, .Positive]
-    
-    var matcher: Parser<Character, ()> {
-        return character(rawValue).discard()
-    }
-}
-
-enum LiteralValue {
-    case IntegerLiteral(sign: Sign, digits: DigitList)
-    case FloatingPointLiteral(sign: Sign, significand: DigitList, exponent: Int)
-    case StringLiteral(String)
-}
-
-extension LiteralValue: Parsable {
-    private static let sign = Sign.parser.otherwise(.Positive)
-    
-    private static let digits = many1(digit)
-        .stringify()
-        .map(DigitList.init).map{ $0! }
-    
-    private static let integerLiteral = pair(sign, digits)
-        .map(LiteralValue.IntegerLiteral)
-        .withError("integerLiteral")
-    
-    private static let floatingPointLiteral = Parser<Character, LiteralValue> { state in
-        let theSign = try sign.parse(state)
-        let leftDigits = try digits.parse(state)
-        let decimal = try character(".").parse(state)
-        let rightDigits = try digits.parse(state)
-        return .FloatingPointLiteral(sign: theSign, significand: leftDigits + rightDigits, exponent: -rightDigits.digits.count)
-    }
-    
-    private static let stringLiteral = between(character("\""), parseFew: any(), usingEscape: character("\\"))
-        .stringify()
-        .map(LiteralValue.StringLiteral)
-    
-    static var parser = floatingPointLiteral ?? integerLiteral ?? stringLiteral
-}
-
-enum Operator: String {
-    case Assignment = ":="
-    case Lambda = "->"
-    case Binding = "::"
-}
 
 extension Operator: Matchable {
     static var all: [Operator] = [.Assignment, .Lambda, .Binding]
