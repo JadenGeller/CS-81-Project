@@ -1,5 +1,9 @@
 # Progress Update
 
+I've spent the last 5 days working nonstop on the most recent CS 124 assingment, so I haven't made notable progress on CS 81 this week. I stayed up this last night working, but I'm having trouble making progress while tired, so I'd perfer to reschedule our meeting for later this week.
+
+Here's what I've been working on and pondering:
+
 ## Line-Column Indexing
 
 I created a type [`Document`](https://github.com/jadengeller/document) that provides indexing based on line and column such that the lexer and provide more useful indexing information without specializing the lexer specifically for `String` and without performing an expensive linear index to line-column index lookup for every token after the lexing process.
