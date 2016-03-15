@@ -15,6 +15,7 @@ public enum Expression {
     indirect case Lambda(term: Bare, value: Expression)
     indirect case Application(Expression, Expression)
     case Lookup(Identifier)
+    case literal(Literal)
 }
 
 extension Expression {
@@ -33,8 +34,8 @@ import Parsley
 
 private let grouping = (token(Token.symbol(Symbol.pairedDelimiter(PairedDelimiter(rawValue: "(")!))), token(Token.symbol(Symbol.pairedDelimiter(PairedDelimiter(rawValue: ")")!))))
 private let bare: Parser<Token, Bare> = any().map{ if case let .bare(b) = $0 where !["let"].contains(b.string) { return b } else { throw ParseError.UnableToMatch("Bare") } }
+private let literalParser: Parser<Token, Literal> = any().map{ if case let .literal(l) = $0 { return l } else { throw ParseError.UnableToMatch("Literal") } }
 
-private let equalSymbol = InfixOperator(characters: ["="], precedence: 0, associativity: .None)
 private let arrowSymbol = InfixOperator(characters: ["-", ">"], precedence: 1, associativity: .None)
 
 extension Expression {
@@ -71,9 +72,13 @@ extension Expression {
         }
     }
     
+    private static var literalExpression: Parser<Token, Expression> {
+        return literalParser.map(Expression.literal)
+    }
+    
     private static func tightlyBoundExpression(infixOperators: [InfixOperator]) -> Parser<Token, Expression> {
         
-        return identifierExpression(infixOperators) ?? between(grouping.0, grouping.1, parse: Expression.looselyBoundExpression(infixOperators))
+        return identifierExpression(infixOperators) ?? literalExpression ?? between(grouping.0, grouping.1, parse: Expression.looselyBoundExpression(infixOperators))
     }
     
     private static func looselyBoundExpression(infixOperators: [InfixOperator]) -> Parser<Token, Expression> {
