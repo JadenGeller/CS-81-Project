@@ -64,6 +64,8 @@ A really annoying thing to deal with is making each and every type equatable in 
 
 When parsing identifiers, we need to specifically check to make sure they're not a keyword. Otherwise, our grammar will be ambiguous in that there are some places words like `let` are keywords and some other places that they act as identifiers. This is obviously bad.
 
+We should probably do a similiar thing for the `=` operator so it can't be used as an infix operator anywhere. I should decide on a clean way to accomplish this instead of hardcoding in two places the `=` symbol.
+
 # Other
 
 ## Swift Style
