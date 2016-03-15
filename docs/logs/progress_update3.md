@@ -8,6 +8,8 @@ This week, I decided to resist any refactoring, and just build write code on top
 
 ## Lexing
 
+I had previously wrote a lexer for my language, but in writing the parser I realized a few changes that ought to be made, so I've outlined them below. Just a reminder, recall we're having a separate lexing and parsing phase since it simplifies the logic. It is very bug-prone to worry about whitespace when writing the parser, at least in my experience.
+
 ### Improving Symbols
 
 I've updated the `Matchable` protocol so that, when symbols are parsed, it always starts with the longest possible symbols before making its way toward the shorter ones. This ensures that we'll a symbol such as `->` even if we have registered a symbol `-`.
