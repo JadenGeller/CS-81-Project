@@ -59,3 +59,7 @@ The [Swift style guide](https://swift.org/documentation/api-design-guidelines/) 
 ## TIL
 
 While holding office hours, I realized that the Ocaml module system works **very** similiarly to the Swift protocol system. Swift protocols have associated types, they allow you to specify what methods a type must implement, and they allow you to give default implementations of methods if desired. Swift protocols are more powerful in that they also allow new methods to be added (w/ default implementations) whenever a certain associated type conforms to some other protocol.
+
+## Language Design
+
+I'm kind of thinking I want tagless union types in my language... And yes, I remember that you did recommend against such a thing. My reasoning is that I'm finding very often in my Swift code that I wish the enum cases were types themselves. Instead of defining both `struct PairedDelimiter { ... }` and `enum Symbol { ... case pairedDelimiter(PairedDelimiter) ... }`, I could simply say that `Symbol = ... | PairedDelimiter | ...`. The big pitfall of this is defining some generic union type like `Optional T = T | None` since this would "flatten" an `Optional (Optional T)` into just an `Optional T`, losing the two different `None`s. One solution is to define it instead as `Optional (Box T) None` so that we don't have that problem. I have to give this a lot more thought, but I still don't hate the idea...
