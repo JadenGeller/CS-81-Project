@@ -60,6 +60,10 @@ When I wrote the infix operator parser, I was thinking of lexing and parsing as 
 
 A really annoying thing to deal with is making each and every type equatable in Swift. This is especially tedious for enums since you have to use a switch statement to unwrap each type and check if its components are equal. Equality checking on our lexed tokens is necessary to build our parser, so I had to spend a lot of time making everything conform to Equatable. 
 
+### Keywords
+
+When parsing identifiers, we need to specifically check to make sure they're not a keyword. Otherwise, our grammar will be ambiguous in that there are some places words like `let` are keywords and some other places that they act as identifiers. This is obviously bad.
+
 # Other
 
 ## Swift Style
