@@ -24,7 +24,7 @@ extension Expression {
         guard expressions.count > 1 else {
             return expressions[0]
         }
-        return .Application(expressions.first!, MultiApplication(Array(expressions.dropFirst())))
+        return .Application(MultiApplication(Array(expressions.dropLast())), expressions.last!)
     }
 }
 
