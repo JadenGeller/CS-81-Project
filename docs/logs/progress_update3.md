@@ -38,6 +38,8 @@ Now, let's back up a moment. One solution to the first problem (lexing context) 
 
 The final solution (probably the cleanest) is to simply throw out spaces and detect function application during the parsing stage. This makes infix operator parsing grosser, but this is probably the cleanest solution.
 
+**Update:** I decided to just encode in the parser that side-by-side identifiers can be considered function application. It works essentially as outlined in my [CFG](https://github.com/JadenGeller/CS-81-Project/blob/master/docs/logs/progress_update1.md#decisions) (except for a mistake I made in my CFG where I set function application not to be tightly binding). I have to first check for function application before identifier lookup else we'll succeed only reading one of the two identifiers.
+
 ### Matching Specific Token
 
 To match a specific case of a token, we have to use a switch statement to check the case. This is super unideal, so instead we define a `Tag` type that is the token without the assoicated types, so we can just check the tag.
