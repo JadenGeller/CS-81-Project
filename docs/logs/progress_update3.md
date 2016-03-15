@@ -18,6 +18,10 @@ After giving it more thought, I think `RawRepresentable` is the correct type for
 
 This implies there probably should be a seperate type for *this is an infix operator that exists and here are its properties* and for *this is an infix operator symbol* we found in the parsed text. The parser library could have some abstraction that takes the former type and build the dictionary based off that. To be honest, I'm not sure that there needs to be a distinction between the different types of symbols at the lexer level. I think that we should provide the lexer that information, but it lexes to symbol, literal, or bare only.
 
+### Separate Stage
+
+I keep going back and forth on whether lexing and parsing ought to be separate stages. It simplifies the logic in some ways and complicates it in others. I think making them separate stages makes sense so I don't have to worry about whitespace while parsing, so that's what I'm going to keep with for now.
+
 ## Parsing
 
 ### Function Application
