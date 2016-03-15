@@ -86,7 +86,7 @@ I'm kind of thinking I want tagless union types in my language... And yes, I rem
 
 ### Nested Types
 
-I think types being able to access members of types they're defined in would be really cool. Basically, lambda-like capture semantics.
+I think types being able to access members of types they're defined in would be really cool. Basically, lambda-like capture semantics. Note the syntax isn't final (or even considered).
 
 ```swift
 
@@ -108,3 +108,4 @@ let c = Foo(x: 3)
 let d = c.Bar()
 d.test() // -> 3
 ```
+Obviously you could still define something that's equivalent to static types to avoid capturing. Anway, just an idea. :)
