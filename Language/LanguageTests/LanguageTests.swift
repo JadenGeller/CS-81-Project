@@ -25,6 +25,6 @@ class LanguageTests: XCTestCase {
     }
     
     func testParseExpression() {
-        print(try! terminating(Expression.parser(operators)).parse(Token.lex(operators, input: "y + x * z w")))
+        print(try! terminating(Expression.parser(operators)).parse(Token.lex(operators, input: "y + x * a b c")))
     }
 }

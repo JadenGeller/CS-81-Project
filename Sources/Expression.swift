@@ -17,11 +17,23 @@ public enum Expression {
     case Lookup(Identifier)
 }
 
+extension Expression {
+    public static func MultiApplication(expressions: [Expression]) -> Expression {
+        precondition(!expressions.isEmpty)
+        guard expressions.count > 1 else {
+            return expressions[0]
+        }
+        return .Application(expressions.first!, MultiApplication(Array(expressions.dropFirst())))
+    }
+}
+
 // MARK: Parsable
 
 import Parsley
 
 private let grouping = (token(Token.symbol(Symbol.pairedDelimiter(PairedDelimiter(rawValue: "(")!))), token(Token.symbol(Symbol.pairedDelimiter(PairedDelimiter(rawValue: ")")!))))
+private let bare: Parser<Token, Bare> = any().map{ if case let .bare(b) = $0 { return b } else { throw ParseError.UnableToMatch("Bare") } }
+
 extension Expression {
     init(infixOp: Infix<InfixOperator, Expression>) {
         switch infixOp {
@@ -38,10 +50,16 @@ extension Expression {
         return infix(infixOperators, operatorMatcherBuilder: builder, between: Expression.tightlyBoundExpression(infixOperators), groupedBy: grouping).map { Expression(infixOp: $0) }
     }
     
+    // Identifier of function of 1+ args.
+    private static func identifierExpression(infixOperators: [InfixOperator]) -> Parser<Token, Expression> {
+        return pair(bare.map(Identifier.bare).map(Expression.Lookup), many(hold(tightlyBoundExpression(infixOperators)))).map { lhs, rest in
+            return Expression.MultiApplication([lhs] + rest)
+        }
+    }
+    
     private static func tightlyBoundExpression(infixOperators: [InfixOperator]) -> Parser<Token, Expression> {
-        let bare: Parser<Token, Bare> = any().map{ if case let .bare(b) = $0 { return b } else { throw ParseError.UnableToMatch("Bare") } }
         
-        return bare.map(Identifier.bare).map(Expression.Lookup) ?? between(grouping.0, grouping.1, parse: Expression.looselyBoundExpression(infixOperators))
+        return identifierExpression(infixOperators) ?? between(grouping.0, grouping.1, parse: Expression.looselyBoundExpression(infixOperators))
     }
     
     private static func looselyBoundExpression(infixOperators: [InfixOperator]) -> Parser<Token, Expression> {
