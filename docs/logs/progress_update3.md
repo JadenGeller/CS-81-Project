@@ -35,3 +35,11 @@ The final solution (probably the cleanest) is to simply throw out spaces and det
 ### Matching Specific Token
 
 To match a specific case of a token, we have to use a switch statement to check the case. This is super unideal, so instead we define a `Tag` type that is the token without the assoicated types, so we can just check the tag.
+
+### Infix Operator
+
+When I wrote the infix operator parser, I was thinking of lexing and parsing as the same phase. Thus, the infix operator matches on `Character` rather than the actual type of the token. I fixed this by making the operator parser take a function from operator to matcher as argument. It's not super clean, but it works until I have a better overall idea of how everything should best work together.
+
+### Equatable
+
+A really annoying thing to deal with is making each and every type equatable in Swift. This is especially tedious for enums since you have to use a switch statement to unwrap each type and check if its components are equal. Equality checking on our lexed tokens is necessary to build our parser, so I had to spend a lot of time making everything conform to Equatable. 
