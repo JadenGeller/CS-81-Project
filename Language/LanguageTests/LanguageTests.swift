@@ -11,20 +11,23 @@ import XCTest
 import Parsley
 import Spork
 
+private let parseOperators = [
+    InfixOperator(characters: ["+"], precedence: 5, associativity: .Left),
+    InfixOperator(characters: ["*"], precedence: 6, associativity: .Left)
+]
+private let lexOperators = parseOperators + [
+    InfixOperator(characters: ["-", ">"], precedence: 1, associativity: .None),
+    InfixOperator(characters: [":", ":"], precedence: 1, associativity: .None),
+    InfixOperator(characters: ["="], precedence: 1, associativity: .None)
+]
+
 class LanguageTests: XCTestCase {
-    let operators = [
-        InfixOperator(characters: ["+"], precedence: 5, associativity: .Left),
-        InfixOperator(characters: ["*"], precedence: 6, associativity: .Left),
-        InfixOperator(characters: [":", ":"], precedence: 2, associativity: .None),
-        InfixOperator(characters: ["="], precedence: 0, associativity: .None),
-        InfixOperator(characters: ["-", ">"], precedence: 1, associativity: .None)
-    ]
     
     func testLexToken() {
-        print(try! Token.lex(operators, input: "let x = (x :: Int) -> x * x"))
+        print(try! Token.lex(lexOperators, input: "let x = (x :: Int) -> x * x"))
     }
     
     func testParseExpression() {
-        print(try! terminating(Expression.parser(operators)).parse(Token.lex(operators, input: "y + x * a b c")))
+        print(try! terminating(Expression.parser(parseOperators)).parse(Token.lex(lexOperators, input: "x -> y -> y + x * a b c")))
     }
 }

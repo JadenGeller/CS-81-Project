@@ -12,6 +12,7 @@
 		4D05148B1C9828F000350DB6 /* PairedDelimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05148A1C9828F000350DB6 /* PairedDelimiter.swift */; };
 		4D05148D1C9829A000350DB6 /* InfixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05148C1C9829A000350DB6 /* InfixOperator.swift */; };
 		4D05148F1C98311700350DB6 /* Bare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05148E1C98311700350DB6 /* Bare.swift */; };
+		4D481E3C1C987BD200C42889 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D481E3B1C987BD200C42889 /* Statement.swift */; };
 		4D5142981C8F31F600356D72 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5142971C8F31F600356D72 /* Types.swift */; };
 		4D8BD6761C7C0FB80072AA41 /* Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BD6751C7C0FB80072AA41 /* Sign.swift */; };
 		4D8BD67C1C7C103F0072AA41 /* DecimalDigit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BD67B1C7C103F0072AA41 /* DecimalDigit.swift */; };
@@ -52,6 +53,7 @@
 		4D05148A1C9828F000350DB6 /* PairedDelimiter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PairedDelimiter.swift; path = ../../Sources/PairedDelimiter.swift; sourceTree = "<group>"; };
 		4D05148C1C9829A000350DB6 /* InfixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfixOperator.swift; path = ../../Sources/InfixOperator.swift; sourceTree = "<group>"; };
 		4D05148E1C98311700350DB6 /* Bare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bare.swift; path = ../../Sources/Bare.swift; sourceTree = "<group>"; };
+		4D481E3B1C987BD200C42889 /* Statement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Statement.swift; path = ../../Sources/Statement.swift; sourceTree = "<group>"; };
 		4D5142971C8F31F600356D72 /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Types.swift; path = ../../Sources/Types.swift; sourceTree = "<group>"; };
 		4D8BD6751C7C0FB80072AA41 /* Sign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sign.swift; path = ../../Sources/Sign.swift; sourceTree = "<group>"; };
 		4D8BD67B1C7C103F0072AA41 /* DecimalDigit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecimalDigit.swift; path = ../../Sources/DecimalDigit.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				4D8BD67A1C7C10260072AA41 /* Lexing */,
 				4D5142971C8F31F600356D72 /* Types.swift */,
 				4D9940D91C984B6A00F34858 /* Expression.swift */,
+				4D481E3B1C987BD200C42889 /* Statement.swift */,
 				4DA9CC801C7C034400D004BF /* Info.plist */,
 			);
 			path = Language;
@@ -302,6 +305,7 @@
 				4D05148F1C98311700350DB6 /* Bare.swift in Sources */,
 				4D0514841C98202C00350DB6 /* Symbol.swift in Sources */,
 				4D0514881C98204900350DB6 /* Literal.swift in Sources */,
+				4D481E3C1C987BD200C42889 /* Statement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
