@@ -13,17 +13,20 @@ public enum Token {
     case symbol(Symbol)
     case bare(Bare)
     case literal(Literal)
+    case newLine
     
     public enum Tag {
         case symbol
         case bare
         case literal
+        case newLine
     }
     public var tag: Tag {
         switch self {
         case .symbol:  return .symbol
         case .bare:    return .bare
         case .literal: return .literal
+        case .newLine: return .newLine
         }
     }
 }
@@ -34,6 +37,7 @@ public func ==(lhs: Token.Tag, rhs: Token.Tag) -> Bool {
     case (.symbol, .symbol): return true
     case (.bare, .bare): return true
     case (.literal, .literal): return true
+    case (.newLine, .newLine): return true
     default: return false
     }
 }
@@ -47,13 +51,15 @@ public func ==(lhs: Token, rhs: Token) -> Bool {
         return l == r
     case let (.literal(l), .literal(r)):
         return l == r
+    case (.newLine, .newLine):
+        return true
     default: return false
     }
 }
 
 extension Token {
     public static func parser(infixOperators: [InfixOperator]) -> Parser<Character, Token> {
-        return Symbol.parser(infixOperators).map(symbol) ?? Literal.parser.map(literal) ?? Bare.parser.map(bare)
+        return Symbol.parser(infixOperators).map(symbol) ?? Literal.parser.map(literal) ?? Bare.parser.map(bare) ?? many1(Parsley.newLine).replace(Token.newLine)
     }
     
     public static func lex(infixOperators: [InfixOperator], input: String) throws -> [Token] {
