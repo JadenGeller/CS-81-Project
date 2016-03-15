@@ -46,7 +46,7 @@ The final solution (probably the cleanest) is to simply throw out spaces and det
 
 To match a specific case of a token, we have to use a switch statement to check the case. This is super unideal, so instead we define a `Tag` type that is the token without the assoicated types, so we can just check the tag.
 
-*Update:* I ended up not using this and doing it differently (with a `case let`) since I needed to unpack the data. Unfortunately, this looks super gross. Maybe I should eventually revisit this to see if there's a cleaner way to accomplish this. But for now, it works.
+**Update:** I ended up not using this and doing it differently (with a `case let`) since I needed to unpack the data. Unfortunately, this looks super gross. Maybe I should eventually revisit this to see if there's a cleaner way to accomplish this. But for now, it works.
 
 ### Infix Operator
 
