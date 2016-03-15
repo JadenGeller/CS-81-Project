@@ -13,3 +13,5 @@ I also recently decided that the `Enumerable` protocol is not a good idea since 
 ### Replacing Matchable
 
 Matchable adds unnecessary complexity to the parser. Instead, I built a `raw` parser that can parse `RawRepresentable` things in a similiar way that `Matchable` did. You can accomplish the same behavior with `coalesce(arr.map(raw))`. It's much cleaner IMO. A notable grossness---I'm using `RawRepresentable` on things that sometimes don't make sense to be initialized from their raw value (aka, they need extra data for that). Because of this, I should later revist this and make a `TokenRepresentable` type or something. I didn't want to go down that rabit hole today though.
+
+After giving it more thought, I think `RawRepresentable` is the correct type for these things, they just shouldn't store the extra data on them. For example, *every* infix operator that we lex shouldn't store the associativity. We should just provide the associativity to the parser in a dictionary so we only need it once for each operator.
