@@ -43,3 +43,9 @@ When I wrote the infix operator parser, I was thinking of lexing and parsing as 
 ### Equatable
 
 A really annoying thing to deal with is making each and every type equatable in Swift. This is especially tedious for enums since you have to use a switch statement to unwrap each type and check if its components are equal. Equality checking on our lexed tokens is necessary to build our parser, so I had to spend a lot of time making everything conform to Equatable. 
+
+# Other
+
+## Swift Style
+
+The [Swift style guide](https://swift.org/documentation/api-design-guidelines/) was updated to make some major changes. A big on is that enum case names are now lowercase. I've been following this convention for newly defined types, but I haven't gone back and updated existing types to follow this style.
