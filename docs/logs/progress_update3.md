@@ -56,6 +56,8 @@ To match a specific case of a token, we have to use a switch statement to check 
 
 When I wrote the infix operator parser, I was thinking of lexing and parsing as the same phase. Thus, the infix operator matches on `Character` rather than the actual type of the token. I fixed this by making the operator parser take a function from operator to matcher as argument. It's not super clean, but it works until I have a better overall idea of how everything should best work together.
 
+**Update:** By making infix operators not hardcoded into the type, we added an argument to *every single function* that involes infix operators, even recursively down the tree. I propose that a better way to solve this would be to make a type *`ParseSpecification`* or something similiar that hold the infix operators as an instance variable. Then, everything else is defined inside of this type so that they can refer to these instance variables. Scratch that! That isn't possible since nested types can't see the members of the types they're nested in. They're not like lambdas. I think I should do that differently in my language to make them more like lambdas. Check our the (Nested Types)[#NestedTypes] section!
+
 ### Equatable
 
 A really annoying thing to deal with is making each and every type equatable in Swift. This is especially tedious for enums since you have to use a switch statement to unwrap each type and check if its components are equal. Equality checking on our lexed tokens is necessary to build our parser, so I had to spend a lot of time making everything conform to Equatable. 
@@ -78,4 +80,31 @@ While holding office hours, I realized that the Ocaml module system works **very
 
 ## Language Design
 
+### Union Types
+
 I'm kind of thinking I want tagless union types in my language... And yes, I remember that you did recommend against such a thing. My reasoning is that I'm finding very often in my Swift code that I wish the enum cases were types themselves. Instead of defining both `struct PairedDelimiter { ... }` and `enum Symbol { ... case pairedDelimiter(PairedDelimiter) ... }`, I could simply say that `Symbol = ... | PairedDelimiter | ...`. The big pitfall of this is defining some generic union type like `Optional T = T | None` since this would "flatten" an `Optional (Optional T)` into just an `Optional T`, losing the two different `None`s. One solution is to define it instead as `Optional (Box T) None` so that we don't have that problem. I have to give this a lot more thought, but I still don't hate the idea...
+
+### Nested Types
+
+I think types being able to access members of types they're defined in would be really cool. Basically, lambda-like capture semantics.
+
+```swift
+
+struct Foo {
+	var x: Int
+	
+	struct Bar {
+		func test() {
+			print("Hi \(x)")
+		}
+	}
+}
+
+let a = Foo(x: 0)
+let b = a.Bar()
+b.test() // -> 0
+
+let c = Foo(x: 3)
+let d = c.Bar()
+d.test() // -> 3
+```
