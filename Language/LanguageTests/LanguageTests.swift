@@ -18,7 +18,7 @@ private let parseOperators = [
 private let lexOperators = parseOperators + [
     InfixOperator(characters: ["-", ">"], precedence: 1, associativity: .None),
     InfixOperator(characters: [":", ":"], precedence: 1, associativity: .None),
-    InfixOperator(characters: ["="], precedence: 1, associativity: .None)
+    InfixOperator(characters: ["="], precedence: 0, associativity: .None)
 ]
 
 class LanguageTests: XCTestCase {
@@ -28,6 +28,10 @@ class LanguageTests: XCTestCase {
     }
     
     func testParseExpression() {
-        print(try! terminating(Expression.parser(parseOperators)).parse(Token.lex(lexOperators, input: "x -> y -> y + x * a b c")))
+        print(try! terminating(Expression.parser(parseOperators)).parse(Token.lex(lexOperators, input: "x -> y -> y + x * a \"hi\" 5.32")))
+    }
+    
+    func testParseStatement() {
+        print(try! terminating(Statement.parser(parseOperators)).parse(Token.lex(lexOperators, input: "let z = (x :: Int) -> (y :: Int) -> y + x * a \"hi\" 5.32")))
     }
 }
