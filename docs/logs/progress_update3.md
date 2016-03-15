@@ -30,6 +30,8 @@ I keep going back and forth on whether lexing and parsing ought to be separate s
 
 ## Parsing
 
+In parsing, there seem to be 100x ways to do everything, so design decisions are really difficult to make. I can now appreciate your recommendation to not use Haskell due to the overwhelming number choices of ways to do things...
+
 ### Function Application
 
 It isn't straightforward to me how function application ought to be parsed. If I were to treat spaces between identifiers as infix operators, I could use the existing infix operator parsing which would be very convenient. There are two problems though. First, this makes the lexing stage much more complicated (and much less like lexing) since the lexer must know the context of the surrounding symbols to correctly lex the space. Second, there are some bare words that aren't actually identifiers. For example, keywords such as `let` and `var` ought to not treat the space in between as an infix operator (applying the undeclared identifier to the function "let").
