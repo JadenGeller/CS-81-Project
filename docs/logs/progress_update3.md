@@ -49,3 +49,7 @@ A really annoying thing to deal with is making each and every type equatable in 
 ## Swift Style
 
 The [Swift style guide](https://swift.org/documentation/api-design-guidelines/) was updated to make some major changes. A big on is that enum case names are now lowercase. I've been following this convention for newly defined types, but I haven't gone back and updated existing types to follow this style.
+
+## TIL
+
+While holding office hours, I realized that the Ocaml module system works **very** similiarly to the Swift protocol system. Swift protocols have associated types, they allow you to specify what methods a type must implement, and they allow you to give default implementations of methods if desired. Swift protocols are more powerful in that they also allow new methods to be added (w/ default implementations) whenever a certain associated type conforms to some other protocol.
