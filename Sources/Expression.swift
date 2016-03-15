@@ -12,7 +12,7 @@ public enum Identifier {
 }
 
 public enum Expression {
-    indirect case Lambda(term: Bare, value: Expression)
+    indirect case Lambda(term: Bare, termType: String?, value: Expression)
     indirect case Application(Expression, Expression)
     case Lookup(Identifier)
     case literal(Literal)
@@ -37,6 +37,8 @@ private let bare: Parser<Token, Bare> = any().map{ if case let .bare(b) = $0 whe
 private let literalParser: Parser<Token, Literal> = any().map{ if case let .literal(l) = $0 { return l } else { throw ParseError.UnableToMatch("Literal") } }
 
 private let arrowSymbol = InfixOperator(characters: ["-", ">"], precedence: 1, associativity: .None)
+private let typeSymbol = InfixOperator(characters: [":", ":"], precedence: 1, associativity: .None)
+
 
 extension Expression {
     init(infixOp: Infix<InfixOperator, Expression>) {
@@ -49,12 +51,25 @@ extension Expression {
     }
     
     private static func lambdaExpression(infixOperators: [InfixOperator]) -> Parser<Token, Expression> {
+        // TODO: Clean up duplicate code
         return Parser { state in
             let arg = try bare.parse(state)
+            
             _ = try token(Token.symbol(Symbol.infix(arrowSymbol))).parse(state)
             let expr = try looselyBoundExpression(infixOperators).parse(state)
             
-            return Expression.Lambda(term: arg, value: expr)
+            return Expression.Lambda(term: arg, termType: nil, value: expr)
+        } ?? Parser { state in
+            _ = try grouping.0.parse(state)
+            let arg = try bare.parse(state)
+            _ = try token(Token.symbol(Symbol.infix(typeSymbol))).parse(state)
+            let type = try bare.parse(state)
+            _ = try grouping.1.parse(state)
+            
+            _ = try token(Token.symbol(Symbol.infix(arrowSymbol))).parse(state)
+            let expr = try looselyBoundExpression(infixOperators).parse(state)
+            
+            return Expression.Lambda(term: arg, termType: type.string, value: expr)
         }
     }
     
