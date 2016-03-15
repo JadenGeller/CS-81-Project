@@ -8,29 +8,23 @@
 
 import XCTest
 @testable import Language
+import Parsley
+import Spork
 
 class LanguageTests: XCTestCase {
+    let operators = [
+        InfixOperator(characters: ["+"], precedence: 5, associativity: .Left),
+        InfixOperator(characters: ["*"], precedence: 6, associativity: .Left),
+        InfixOperator(characters: [":", ":"], precedence: 2, associativity: .None),
+        InfixOperator(characters: ["="], precedence: 0, associativity: .None),
+        InfixOperator(characters: ["-", ">"], precedence: 1, associativity: .None)
+    ]
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testLexToken() {
+        print(try! Token.lex(operators, input: "let x = (x :: Int) -> x * x"))
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testParseExpression() {
+        print(try! terminating(Expression.parser(operators)).parse(Token.lex(operators, input: "y + x * z w")))
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }

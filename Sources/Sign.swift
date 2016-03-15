@@ -6,7 +6,7 @@
 //  Copyright © 2016 Jaden Geller. All rights reserved.
 //
 
-public enum Sign: Character {
+public enum Sign: Character, Equatable {
     case Negative = "-"
     case Positive = "+"
 }

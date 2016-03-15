@@ -7,21 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D0514841C98202C00350DB6 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0514831C98202C00350DB6 /* Symbol.swift */; };
+		4D0514881C98204900350DB6 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0514871C98204900350DB6 /* Literal.swift */; };
+		4D05148B1C9828F000350DB6 /* PairedDelimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05148A1C9828F000350DB6 /* PairedDelimiter.swift */; };
+		4D05148D1C9829A000350DB6 /* InfixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05148C1C9829A000350DB6 /* InfixOperator.swift */; };
+		4D05148F1C98311700350DB6 /* Bare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D05148E1C98311700350DB6 /* Bare.swift */; };
+		4D5142981C8F31F600356D72 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5142971C8F31F600356D72 /* Types.swift */; };
 		4D8BD6761C7C0FB80072AA41 /* Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BD6751C7C0FB80072AA41 /* Sign.swift */; };
-		4D8BD6781C7C10190072AA41 /* Literal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BD6771C7C10190072AA41 /* Literal.swift */; };
 		4D8BD67C1C7C103F0072AA41 /* DecimalDigit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BD67B1C7C103F0072AA41 /* DecimalDigit.swift */; };
-		4D8BD6821C7C17C20072AA41 /* TypeExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BD6811C7C17C20072AA41 /* TypeExpression.swift */; };
-		4D8BD6841C7C17D10072AA41 /* Bare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BD6831C7C17D10072AA41 /* Bare.swift */; };
-		4D8BD6861C7C17D60072AA41 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BD6851C7C17D60072AA41 /* Operator.swift */; };
-		4D8BD68A1C7C18E40072AA41 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BD6891C7C18E40072AA41 /* Type.swift */; };
-		4D8BD68C1C7C207B0072AA41 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BD68B1C7C207B0072AA41 /* Expression.swift */; };
-		4D8BD68E1C7C21140072AA41 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8BD68D1C7C21140072AA41 /* Identifier.swift */; };
+		4D9940DA1C984B6A00F34858 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9940D91C984B6A00F34858 /* Expression.swift */; };
 		4DA9CC861C7C034400D004BF /* Language.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DA9CC7B1C7C034400D004BF /* Language.framework */; };
 		4DA9CC8B1C7C034400D004BF /* LanguageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9CC8A1C7C034400D004BF /* LanguageTests.swift */; };
-		4DA9CC981C7C061700D004BF /* Lexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9CC971C7C061700D004BF /* Lexing.swift */; };
+		4DA9CC981C7C061700D004BF /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA9CC971C7C061700D004BF /* Token.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4D0514741C981E6100350DB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4D05146E1C981E6100350DB6 /* Parsley.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4D72139B1C44A9E7007B806B;
+			remoteInfo = Parsley;
+		};
+		4D0514761C981E6100350DB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4D05146E1C981E6100350DB6 /* Parsley.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4D7213A51C44A9E7007B806B;
+			remoteInfo = ParsleyTests;
+		};
 		4DA9CC871C7C034400D004BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4DA9CC721C7C034400D004BF /* Project object */;
@@ -29,39 +43,25 @@
 			remoteGlobalIDString = 4DA9CC7A1C7C034400D004BF;
 			remoteInfo = Language;
 		};
-		4DA9CC9F1C7C062500D004BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4DA9CC991C7C062500D004BF /* Parsley.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4D72139B1C44A9E7007B806B;
-			remoteInfo = Parsley;
-		};
-		4DA9CCA11C7C062500D004BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4DA9CC991C7C062500D004BF /* Parsley.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4D7213A51C44A9E7007B806B;
-			remoteInfo = ParsleyTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D05146E1C981E6100350DB6 /* Parsley.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parsley.xcodeproj; path = "../Packages/Parsley-2.2.1/Parsley/Parsley.xcodeproj"; sourceTree = "<group>"; };
+		4D0514831C98202C00350DB6 /* Symbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Symbol.swift; path = ../../Sources/Symbol.swift; sourceTree = "<group>"; };
+		4D0514871C98204900350DB6 /* Literal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Literal.swift; path = ../../Sources/Literal.swift; sourceTree = "<group>"; };
+		4D05148A1C9828F000350DB6 /* PairedDelimiter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PairedDelimiter.swift; path = ../../Sources/PairedDelimiter.swift; sourceTree = "<group>"; };
+		4D05148C1C9829A000350DB6 /* InfixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfixOperator.swift; path = ../../Sources/InfixOperator.swift; sourceTree = "<group>"; };
+		4D05148E1C98311700350DB6 /* Bare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bare.swift; path = ../../Sources/Bare.swift; sourceTree = "<group>"; };
+		4D5142971C8F31F600356D72 /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Types.swift; path = ../../Sources/Types.swift; sourceTree = "<group>"; };
 		4D8BD6751C7C0FB80072AA41 /* Sign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sign.swift; path = ../../Sources/Sign.swift; sourceTree = "<group>"; };
-		4D8BD6771C7C10190072AA41 /* Literal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Literal.swift; path = ../../Sources/Literal.swift; sourceTree = "<group>"; };
 		4D8BD67B1C7C103F0072AA41 /* DecimalDigit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecimalDigit.swift; path = ../../Sources/DecimalDigit.swift; sourceTree = "<group>"; };
-		4D8BD6811C7C17C20072AA41 /* TypeExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeExpression.swift; path = ../../Sources/TypeExpression.swift; sourceTree = "<group>"; };
-		4D8BD6831C7C17D10072AA41 /* Bare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bare.swift; path = ../../Sources/Bare.swift; sourceTree = "<group>"; };
-		4D8BD6851C7C17D60072AA41 /* Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operator.swift; path = ../../Sources/Operator.swift; sourceTree = "<group>"; };
-		4D8BD6891C7C18E40072AA41 /* Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Type.swift; path = ../../Sources/Type.swift; sourceTree = "<group>"; };
-		4D8BD68B1C7C207B0072AA41 /* Expression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = ../../Sources/Expression.swift; sourceTree = "<group>"; };
-		4D8BD68D1C7C21140072AA41 /* Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Identifier.swift; path = ../../Sources/Identifier.swift; sourceTree = "<group>"; };
+		4D9940D91C984B6A00F34858 /* Expression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = ../../Sources/Expression.swift; sourceTree = "<group>"; };
 		4DA9CC7B1C7C034400D004BF /* Language.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Language.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DA9CC801C7C034400D004BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DA9CC851C7C034400D004BF /* LanguageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LanguageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DA9CC8A1C7C034400D004BF /* LanguageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTests.swift; sourceTree = "<group>"; };
 		4DA9CC8C1C7C034400D004BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4DA9CC971C7C061700D004BF /* Lexing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lexing.swift; path = ../../Sources/Lexing.swift; sourceTree = "<group>"; };
-		4DA9CC991C7C062500D004BF /* Parsley.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Parsley.xcodeproj; path = "../Packages/Parsley-2.2.0/Parsley/Parsley.xcodeproj"; sourceTree = "<group>"; };
+		4DA9CC971C7C061700D004BF /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Token.swift; path = ../../Sources/Token.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,34 +83,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4D8BD6791C7C10200072AA41 /* Literal */ = {
+		4D05146F1C981E6100350DB6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4D8BD6771C7C10190072AA41 /* Literal.swift */,
+				4D0514751C981E6100350DB6 /* Parsley.framework */,
+				4D0514771C981E6100350DB6 /* ParsleyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4D0514891C9828E100350DB6 /* Symbols */ = {
+			isa = PBXGroup;
+			children = (
+				4D0514831C98202C00350DB6 /* Symbol.swift */,
+				4D05148C1C9829A000350DB6 /* InfixOperator.swift */,
+				4D05148A1C9828F000350DB6 /* PairedDelimiter.swift */,
+			);
+			name = Symbols;
+			sourceTree = "<group>";
+		};
+		4D8BD6791C7C10200072AA41 /* Literals */ = {
+			isa = PBXGroup;
+			children = (
+				4D0514871C98204900350DB6 /* Literal.swift */,
 				4D8BD6751C7C0FB80072AA41 /* Sign.swift */,
 				4D8BD67B1C7C103F0072AA41 /* DecimalDigit.swift */,
 			);
-			name = Literal;
+			name = Literals;
 			sourceTree = "<group>";
 		};
-		4D8BD67A1C7C10260072AA41 /* AST */ = {
+		4D8BD67A1C7C10260072AA41 /* Lexing */ = {
 			isa = PBXGroup;
 			children = (
-				4D8BD6851C7C17D60072AA41 /* Operator.swift */,
-				4D8BD6831C7C17D10072AA41 /* Bare.swift */,
-				4D8BD68D1C7C21140072AA41 /* Identifier.swift */,
-				4D8BD68B1C7C207B0072AA41 /* Expression.swift */,
-				4D8BD6811C7C17C20072AA41 /* TypeExpression.swift */,
-				4D8BD6891C7C18E40072AA41 /* Type.swift */,
-				4D8BD6791C7C10200072AA41 /* Literal */,
+				4DA9CC971C7C061700D004BF /* Token.swift */,
+				4D8BD6791C7C10200072AA41 /* Literals */,
+				4D0514891C9828E100350DB6 /* Symbols */,
+				4D05148E1C98311700350DB6 /* Bare.swift */,
 			);
-			name = AST;
+			name = Lexing;
 			sourceTree = "<group>";
 		};
 		4DA9CC711C7C034400D004BF = {
 			isa = PBXGroup;
 			children = (
-				4DA9CC991C7C062500D004BF /* Parsley.xcodeproj */,
+				4D05146E1C981E6100350DB6 /* Parsley.xcodeproj */,
 				4DA9CC7D1C7C034400D004BF /* Language */,
 				4DA9CC891C7C034400D004BF /* LanguageTests */,
 				4DA9CC7C1C7C034400D004BF /* Products */,
@@ -129,8 +145,9 @@
 		4DA9CC7D1C7C034400D004BF /* Language */ = {
 			isa = PBXGroup;
 			children = (
-				4D8BD67A1C7C10260072AA41 /* AST */,
-				4DA9CC971C7C061700D004BF /* Lexing.swift */,
+				4D8BD67A1C7C10260072AA41 /* Lexing */,
+				4D5142971C8F31F600356D72 /* Types.swift */,
+				4D9940D91C984B6A00F34858 /* Expression.swift */,
 				4DA9CC801C7C034400D004BF /* Info.plist */,
 			);
 			path = Language;
@@ -143,15 +160,6 @@
 				4DA9CC8C1C7C034400D004BF /* Info.plist */,
 			);
 			path = LanguageTests;
-			sourceTree = "<group>";
-		};
-		4DA9CC9A1C7C062500D004BF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4DA9CCA01C7C062500D004BF /* Parsley.framework */,
-				4DA9CCA21C7C062500D004BF /* ParsleyTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,8 +241,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 4DA9CC9A1C7C062500D004BF /* Products */;
-					ProjectRef = 4DA9CC991C7C062500D004BF /* Parsley.xcodeproj */;
+					ProductGroup = 4D05146F1C981E6100350DB6 /* Products */;
+					ProjectRef = 4D05146E1C981E6100350DB6 /* Parsley.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -246,18 +254,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4DA9CCA01C7C062500D004BF /* Parsley.framework */ = {
+		4D0514751C981E6100350DB6 /* Parsley.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Parsley.framework;
-			remoteRef = 4DA9CC9F1C7C062500D004BF /* PBXContainerItemProxy */;
+			remoteRef = 4D0514741C981E6100350DB6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		4DA9CCA21C7C062500D004BF /* ParsleyTests.xctest */ = {
+		4D0514771C981E6100350DB6 /* ParsleyTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ParsleyTests.xctest;
-			remoteRef = 4DA9CCA11C7C062500D004BF /* PBXContainerItemProxy */;
+			remoteRef = 4D0514761C981E6100350DB6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -284,16 +292,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DA9CC981C7C061700D004BF /* Lexing.swift in Sources */,
+				4D05148D1C9829A000350DB6 /* InfixOperator.swift in Sources */,
+				4DA9CC981C7C061700D004BF /* Token.swift in Sources */,
+				4D05148B1C9828F000350DB6 /* PairedDelimiter.swift in Sources */,
+				4D5142981C8F31F600356D72 /* Types.swift in Sources */,
+				4D9940DA1C984B6A00F34858 /* Expression.swift in Sources */,
 				4D8BD67C1C7C103F0072AA41 /* DecimalDigit.swift in Sources */,
-				4D8BD68C1C7C207B0072AA41 /* Expression.swift in Sources */,
-				4D8BD6821C7C17C20072AA41 /* TypeExpression.swift in Sources */,
-				4D8BD6781C7C10190072AA41 /* Literal.swift in Sources */,
 				4D8BD6761C7C0FB80072AA41 /* Sign.swift in Sources */,
-				4D8BD68E1C7C21140072AA41 /* Identifier.swift in Sources */,
-				4D8BD6861C7C17D60072AA41 /* Operator.swift in Sources */,
-				4D8BD6841C7C17D10072AA41 /* Bare.swift in Sources */,
-				4D8BD68A1C7C18E40072AA41 /* Type.swift in Sources */,
+				4D05148F1C98311700350DB6 /* Bare.swift in Sources */,
+				4D0514841C98202C00350DB6 /* Symbol.swift in Sources */,
+				4D0514881C98204900350DB6 /* Literal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
