@@ -40,7 +40,7 @@ The final solution (probably the cleanest) is to simply throw out spaces and det
 
 **Update:** I decided to just encode in the parser that side-by-side identifiers can be considered function application. It works essentially as outlined in my [CFG](https://github.com/JadenGeller/CS-81-Project/blob/master/docs/logs/progress_update1.md#decisions) (except for a mistake I made in my CFG where I set function application not to be tightly binding). I have to first check for function application before identifier lookup else we'll succeed only reading one of the two identifiers.
 
-**Update 2:** I tried to implement the parser very similiarly to the CFG, but this did not work because top-down parsers (cannot be left recursive](https://en.wikipedia.org/wiki/Left_recursion#Accommodating_left_recursion_in_top-down_parsing). I have to modify it to use the `many` combinator instead, which in my opinion is less clean, but oh well. I guess this is a good reason to not use parser combinators.
+**Update 2:** I tried to implement the parser very similiarly to the CFG, but this did not work because top-down parsers [cannot be left recursive](https://en.wikipedia.org/wiki/Left_recursion#Accommodating_left_recursion_in_top-down_parsing). I have to [modify](http://stackoverflow.com/a/849673) it to use the `many` combinator instead, which in my opinion is less clean, but oh well. I guess this is a good reason to not use parser combinators. There are a lot of other benefits though obviously.
 
 ### Matching Specific Token
 
