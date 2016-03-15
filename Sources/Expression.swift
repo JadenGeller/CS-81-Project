@@ -34,6 +34,9 @@ import Parsley
 private let grouping = (token(Token.symbol(Symbol.pairedDelimiter(PairedDelimiter(rawValue: "(")!))), token(Token.symbol(Symbol.pairedDelimiter(PairedDelimiter(rawValue: ")")!))))
 private let bare: Parser<Token, Bare> = any().map{ if case let .bare(b) = $0 where !["let"].contains(b.string) { return b } else { throw ParseError.UnableToMatch("Bare") } }
 
+private let equalSymbol = InfixOperator(characters: ["="], precedence: 0, associativity: .None)
+private let arrowSymbol = InfixOperator(characters: ["-", ">"], precedence: 1, associativity: .None)
+
 extension Expression {
     init(infixOp: Infix<InfixOperator, Expression>) {
         switch infixOp {
@@ -41,6 +44,16 @@ extension Expression {
             self = Expression.Application(Expression.Application(Expression.Lookup(.infixOperator(op)), Expression(infixOp: l)),  Expression(infixOp: r))
         case .Value(let v):
             self = v
+        }
+    }
+    
+    private static func lambdaExpression(infixOperators: [InfixOperator]) -> Parser<Token, Expression> {
+        return Parser { state in
+            let arg = try bare.parse(state)
+            _ = try token(Token.symbol(Symbol.infix(arrowSymbol))).parse(state)
+            let expr = try looselyBoundExpression(infixOperators).parse(state)
+            
+            return Expression.Lambda(term: arg, value: expr)
         }
     }
     
@@ -64,7 +77,8 @@ extension Expression {
     }
     
     private static func looselyBoundExpression(infixOperators: [InfixOperator]) -> Parser<Token, Expression> {
-        return hold(infixExpression(infixOperators))
+        // Must check for lambda first since it starts with an identifier (which will be parsed fine by infix expression leaving a dangling ->)
+        return hold(lambdaExpression(infixOperators) ?? infixExpression(infixOperators))
     }
     
     public static func parser(infixOperators: [InfixOperator]) -> Parser<Token, Expression> {
