@@ -58,6 +58,8 @@ When I wrote the infix operator parser, I was thinking of lexing and parsing as 
 
 **Update:** By making infix operators not hardcoded into the type, we added an argument to *every single function* that involes infix operators, even recursively down the tree. I propose that a better way to solve this would be to make a type *`ParseSpecification`* or something similiar that hold the infix operators as an instance variable. Then, everything else is defined inside of this type so that they can refer to these instance variables. Scratch that! That isn't possible since nested types can't see the members of the types they're nested in. They're not like lambdas. I think I should do that differently in my language to make them more like lambdas. Check our the [Nested Types](#nested-types) section!
 
+Maybe the right solution is to not define the parser *on the types* as I am doing now. That'll have to be something to reconsider.
+
 ### Equatable
 
 A really annoying thing to deal with is making each and every type equatable in Swift. This is especially tedious for enums since you have to use a switch statement to unwrap each type and check if its components are equal. Equality checking on our lexed tokens is necessary to build our parser, so I had to spend a lot of time making everything conform to Equatable. 
