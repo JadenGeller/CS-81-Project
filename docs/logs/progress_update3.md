@@ -31,3 +31,7 @@ It isn't straightforward to me how function application ought to be parsed. If I
 Now, let's back up a moment. One solution to the first problem (lexing context) could be adding another separate phase between the lexing and the parsing phase such that these space operators could be labeled. One solution to the second problem would be to treat `let x` as the identifier `x` applied to the function `let`, and then later fix this in a later phase. Neither of these solutions seem great, but they're just ideas.
 
 The final solution (probably the cleanest) is to simply throw out spaces and detect function application during the parsing stage. This makes infix operator parsing grosser, but this is probably the cleanest solution.
+
+### Matching Specific Token
+
+To match a specific case of a token, we have to use a switch statement to check the case. This is super unideal, so instead we define a `Tag` type that is the token without the assoicated types, so we can just check the tag.
