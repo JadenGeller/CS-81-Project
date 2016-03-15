@@ -32,7 +32,7 @@ extension Expression {
 import Parsley
 
 private let grouping = (token(Token.symbol(Symbol.pairedDelimiter(PairedDelimiter(rawValue: "(")!))), token(Token.symbol(Symbol.pairedDelimiter(PairedDelimiter(rawValue: ")")!))))
-private let bare: Parser<Token, Bare> = any().map{ if case let .bare(b) = $0 { return b } else { throw ParseError.UnableToMatch("Bare") } }
+private let bare: Parser<Token, Bare> = any().map{ if case let .bare(b) = $0 where !["let"].contains(b.string) { return b } else { throw ParseError.UnableToMatch("Bare") } }
 
 extension Expression {
     init(infixOp: Infix<InfixOperator, Expression>) {
@@ -52,6 +52,7 @@ extension Expression {
     
     // Identifier of function of 1+ args.
     private static func identifierExpression(infixOperators: [InfixOperator]) -> Parser<Token, Expression> {
+        // Cannot left recurse on expression, must recurse on identifier
         return pair(bare.map(Identifier.bare).map(Expression.Lookup), many(hold(tightlyBoundExpression(infixOperators)))).map { lhs, rest in
             return Expression.MultiApplication([lhs] + rest)
         }
