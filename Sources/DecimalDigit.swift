@@ -19,14 +19,15 @@ public enum DecimalDigit: Int, Equatable {
     case Nine
 }
 
-public func ==(lhs: DecimalDigit, rhs: DecimalDigit) -> Bool {
-    return lhs.rawValue == rhs.rawValue
+extension DecimalDigit: IntegerLiteralConvertible {
+    public init(integerLiteral value: Int) {
+        guard let this = DecimalDigit(rawValue: value) else {
+            fatalError("Decimal digit must be between 0 and 9")
+        }
+        self = this
+    }
 }
 
-// MARK: Parsable
-
-import Parsley
-
-extension DecimalDigit: Parsable {
-    public static let parser = digit.map{ DecimalDigit(rawValue: Int(String($0))!)! }
+public func ==(lhs: DecimalDigit, rhs: DecimalDigit) -> Bool {
+    return lhs.rawValue == rhs.rawValue
 }

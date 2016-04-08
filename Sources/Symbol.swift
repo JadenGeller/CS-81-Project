@@ -6,30 +6,46 @@
 //  Copyright © 2016 Jaden Geller. All rights reserved.
 //
 
-import Parsley
-
-public enum Symbol {
-    case pairedDelimiter(PairedDelimiter)
-    case infix(InfixOperator)
-}
-
-extension Symbol: Equatable {
+public struct Symbol {
+    public let text: String
     
-}
-public func ==(lhs: Symbol, rhs: Symbol) -> Bool {
-    switch (lhs, rhs) {
-    case (.pairedDelimiter(let l), .pairedDelimiter(let r)): return l == r
-    case (.infix(let l), .infix(let r)): return l == r
-    default: return false
+    public init(_ text: String) {
+        self.text = text
     }
+}
+
+extension Symbol: CustomStringConvertible, CustomDebugStringConvertible {
+    public var description: String {
+        return text
+    }
+    
+    public var debugDescription: String {
+        return "Bare(\(description))"
+    }
+}
+
+extension Symbol: StringLiteralConvertible {
+    public init(extendedGraphemeClusterLiteral value: String) {
+        self.init(stringLiteral: value)
+    }
+    
+    public init(unicodeScalarLiteral value: String) {
+        self.init(stringLiteral: value)
+    }
+    
+    public init(stringLiteral value: String) {
+        self.init(value)
+    }
+}
+
+extension Symbol: Equatable { }
+public func ==(lhs: Symbol, rhs: Symbol) -> Bool {
+    return lhs.text == rhs.text
 }
 
 extension Symbol {
-    public static func parser(infixOperators: [InfixOperator]) -> Parser<Character, Symbol> {
-        return InfixOperator.parser(infixOperators).map(infix) ?? PairedDelimiter.parser.map(pairedDelimiter)
-    }
-    
-    public static var all: [Symbol] {
-        fatalError("Deprecated")
+    init?(token: Token) {
+        guard case let .symbol(value) = token else { return nil }
+        self.init(value.text)
     }
 }

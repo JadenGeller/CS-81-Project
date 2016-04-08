@@ -9,11 +9,20 @@
 import Parsley
 
 public struct Program {
-    public var bindings: [Statement]
+    public var statements: [Statement]
 }
 
-extension Program {
-    public static func parser(infixOperators: [InfixOperator]) -> Parser<Token, Program> {
-        return separatedBy(Statement.parser(infixOperators), delimiter: token(Token.newLine)).map(Program.init)
+extension Program: Equatable { }
+public func ==(lhs: Program, rhs: Program) -> Bool {
+    return lhs.statements == rhs.statements
+}
+
+extension Program: CustomStringConvertible, CustomDebugStringConvertible {
+    public var description: String {
+        return statements.map{ $0.description }.joinWithSeparator("\n")
+    }
+    
+    public var debugDescription: String {
+        return "Program(statements: \(statements))"
     }
 }

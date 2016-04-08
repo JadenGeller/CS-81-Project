@@ -11,6 +11,16 @@ public enum Sign: Character, Equatable {
     case Positive = "+"
 }
 
+extension Sign {
+    public init(isPositive: Bool) {
+        self = isPositive ? .Positive : .Negative
+    }
+    
+    public static var all: [Sign] {
+        return [.Negative, .Positive]
+    }
+}
+
 public func ==(lhs: Sign, rhs: Sign) -> Bool {
     switch (lhs, rhs) {
     case (.Negative, .Negative): return true
@@ -19,14 +29,3 @@ public func ==(lhs: Sign, rhs: Sign) -> Bool {
     }
 }
 
-// MARK: Matchable
-
-import Parsley
-
-extension Sign: Matchable {
-    public static var all: [Sign] = [.Negative, .Positive]
-    
-    public var matcher: Parser<Character, ()> {
-        return character(rawValue).discard()
-    }
-}

@@ -7,20 +7,46 @@
 //
 
 public struct Bare {
-    public let string: String
+    public let text: String
+    
+    public init(_ text: String) {
+        self.text = text
+    }
 }
 
-import Parsley
+extension Bare: CustomStringConvertible, CustomDebugStringConvertible {
+    public var description: String {
+        return text
+    }
+    
+    public var debugDescription: String {
+        return "Bare(\(description))"
+    }
+}
 
-extension Bare: Parsable {
-    public static let parser = prepend(
-        letter ?? character("_"),
-        many(letter ?? digit ?? character("_"))
-    ).stringify().withError("bareWord").map(Bare.init)
-
+extension Bare: StringLiteralConvertible {
+    public init(extendedGraphemeClusterLiteral value: String) {
+        self.init(stringLiteral: value)
+    }
+    
+    public init(unicodeScalarLiteral value: String) {
+        self.init(stringLiteral: value)
+    }
+    
+    public init(stringLiteral value: String) {
+        self.init(value)
+    }
 }
 
 extension Bare: Equatable { }
 public func ==(lhs: Bare, rhs: Bare) -> Bool {
-    return lhs.string == rhs.string
+    return lhs.text == rhs.text
 }
+
+extension Bare {
+    init?(token: Token) {
+        guard case let .bare(value) = token else { return nil }
+        self.init(value.text)
+    }
+}
+

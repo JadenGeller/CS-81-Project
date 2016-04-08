@@ -9,23 +9,29 @@
 import Parsley
 
 public enum Statement {
-    case binding(Bare, Expression)
+    case binding(Identifier, Expression)
 }
 
-private let equalSymbol = InfixOperator(characters: ["="], precedence: 0, associativity: .None)
+extension Statement: Equatable { }
+public func ==(lhs: Statement, rhs: Statement) -> Bool {
+    switch (lhs, rhs) {
+    case (.binding(let lIdentifier, let lExpression), .binding(let rIdentifier, let rExpression)):
+        return lIdentifier == rIdentifier && lExpression == rExpression
+    }
+}
 
-private let letParser: Parser<Token, Bare> = any().map{ if case let .bare(b) = $0 where b.string == "let" { return b } else { throw ParseError.UnableToMatch("Let") } }
-private let bare: Parser<Token, Bare> = any().map{ if case let .bare(b) = $0 where !["let"].contains(b.string) { return b } else { throw ParseError.UnableToMatch("Bare") } }
-
-extension Statement {
-    public static func parser(infixOperators: [InfixOperator]) -> Parser<Token, Statement> {
-        return Parser { state in
-            _ = try letParser.parse(state)
-            let name = try bare.parse(state)
-            _ = try token(Token.symbol(Symbol.infix(equalSymbol))).parse(state)
-            let expr = try Expression.parser(infixOperators).parse(state)
-
-            return Statement.binding(name, expr)
+extension Statement: CustomStringConvertible, CustomDebugStringConvertible {
+    public var description: String {
+        switch self {
+        case .binding(let identifier, let expression):
+            return "let \(identifier) = \(expression)"
+        }
+    }
+    
+    public var debugDescription: String {
+        switch self {
+        case .binding(let identifier, let expression):
+            return "Statement.binding(\(identifier), \(expression))"
         }
     }
 }

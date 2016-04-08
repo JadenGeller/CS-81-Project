@@ -6,55 +6,77 @@
 //  Copyright © 2016 Jaden Geller. All rights reserved.
 //
 
-// TODO: Rename to follow modern Swift.
+import Darwin
+
 public enum Literal {
-    case Integer(sign: Sign, digits: [DecimalDigit])
-    case Decimal(sign: Sign, significand: [DecimalDigit], exponent: Int)
-    case String(Swift.String)
+    case integer(sign: Sign, digits: [DecimalDigit])
+    case decimal(sign: Sign, significand: [DecimalDigit], exponent: Int)
+    case string(String)
 }
 
-extension Literal: Equatable {
-    
+extension Literal: IntegerLiteralConvertible {
+    public init(integerLiteral value: Int) {
+        self = .integer(
+            sign: Sign(isPositive: value > 0),
+            digits: abs(value).description.characters.map{ DecimalDigit(rawValue: Int(String($0))!)! }
+        )
+    }
 }
+
+extension Literal: StringLiteralConvertible {
+    public init(extendedGraphemeClusterLiteral value: String) {
+        self.init(stringLiteral: value)
+    }
+    
+    public init(unicodeScalarLiteral value: String) {
+        self.init(stringLiteral: value)
+    }
+    
+    public init(stringLiteral value: String) {
+        self = .string(value)
+    }
+}
+
+extension Literal: CustomStringConvertible, CustomDebugStringConvertible {
+    public var description: String {
+        switch self {
+        case .integer(let sign, let digits):
+            return String(sign.rawValue) + (digits.map{ String($0.rawValue) }).joinWithSeparator("")
+        case .decimal(let sign, let significand, let exponent):
+            return (Float(Literal.integer(sign: sign, digits: significand).description)! * pow(10, Float(exponent))).description
+        case .string(let string):
+            return string
+        }
+    }
+    
+    public var debugDescription: String {
+        switch self {
+        case .integer(let sign, let digits):
+            return "Literal.integer(sign: \(sign), digits: \(digits))"
+        case .decimal(let sign, let significand, let exponent):
+            return "Literal.decimal(sign: \(sign), significand: \(significand), exponent: \(exponent))"
+        case .string(let string):
+            return "Literal.string(\"\(string)\")"
+        }
+    }
+}
+
+extension Literal: Equatable { }
 public func ==(lhs: Literal, rhs: Literal) -> Bool {
     switch (lhs, rhs) {
-    case let (.Integer(lsign, ldigits), .Integer(rsign, rdigits)):
+    case let (.integer(lsign, ldigits), .integer(rsign, rdigits)):
         return lsign == rsign && ldigits == rdigits
-    case let (.Decimal(lsign, lsignificant, lexponent), .Decimal(rsign, rsignificant, rexponent)):
+    case let (.decimal(lsign, lsignificant, lexponent), .decimal(rsign, rsignificant, rexponent)):
         return lsign == rsign && lsignificant == rsignificant && lexponent == rexponent
-    case let (.String(l), .String(r)):
+    case let (.string(l), .string(r)):
         return l == r
     default: return false
     }
 }
 
-// MARK: Parsable
-
-import Parsley
-
-extension Literal: Parsable {
-    private static let sign = Sign.parser.otherwise(.Positive)
-    private static let digits = many1(DecimalDigit.parser)
-    
-    private static let integer = pair(sign, digits)
-        .map(Literal.Integer)
-        .withError("integer")
-    
-    private static let decimal = Parser<Character, Literal> { state in
-        let theSign = try sign.parse(state)
-        let leftDigits = try digits.parse(state)
-        let decimal = try character(".").parse(state)
-        let rightDigits = try digits.parse(state)
-        return .Decimal(
-            sign: theSign,
-            significand: leftDigits + rightDigits,
-            exponent: -rightDigits.count
-        )
-    }.withError("decimal")
-    
-    private static let string = between(character("\""), parseFew: any(), usingEscape: character("\\"))
-        .stringify().map(Literal.String)
-        .withError("stringLiteral")
-    
-    public static var parser = decimal ?? integer ?? string
+extension Literal {
+    init?(token: Token) {
+        guard case let .literal(value) = token else { return nil }
+        self = value
+    }
 }

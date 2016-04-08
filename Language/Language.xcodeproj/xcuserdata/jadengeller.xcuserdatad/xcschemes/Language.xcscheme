@@ -37,6 +37,11 @@
                BlueprintName = "LanguageTests"
                ReferencedContainer = "container:Language.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ExecutionTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
