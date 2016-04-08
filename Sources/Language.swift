@@ -24,7 +24,7 @@ extension Expressive.Expression {
     init(expression: Language.Expression) {
         switch expression {
         case .lambda(let lambda):
-            self = Expressive.Expression.Capture(Expressive.Lambda.Implementation.Derived(argumentName: lambda.argumentName.description, declarations: [], value: Expressive.Expression(expression: lambda.implementation)))
+            self = Expressive.Expression.Capture(Expressive.Lambda.Implementation.Derived(argumentName: lambda.argumentName?.text, declarations: [], value: Expressive.Expression(expression: lambda.implementation)))
         case .application(let application):
             self = Expressive.Expression.Invoke(
                 lambda: Expressive.Expression(expression: application.function),
@@ -62,7 +62,7 @@ let specification = OperatorSpecification(
     ]
 )
 
-let lexOperators = specification.symbols + ["->", "::", "=", "(", ")", "[", "]", "."]
+let lexOperators = specification.symbols + ["->", "\\->", "::", "=", "(", ")", "[", "]", "."]
 
 public func lex(input: String) throws -> [Token] {
     return try LexingContext(symbols: lexOperators).lex(input)

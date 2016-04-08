@@ -11,7 +11,7 @@ import XCTest
 
 class ExecutionTests: XCTestCase {
     func testHelloWorld() {
-        try! execute("let global.main.Void_Void = _ -> global.print.String_Void \"Hello world!\"") // -> Hello world!
+        try! execute("let global.main.Void_Void = \\-> global.print.String_Void \"Hello world!\"") // -> Hello world!
     }
     
     func testFactorial() {
@@ -21,8 +21,8 @@ class ExecutionTests: XCTestCase {
             "let (+) = global.add.Int_Int_Int",
             "let if = global.if.Bool_[Void.T]_[Void.T]_T",
             "let negate = global.negate.Int_Int",
-            "let factorial = x -> if (x == 0) (_ -> 1) (_ -> x * factorial (x + negate 1))",
-            "let global.main.Void_Void = _ -> global.print.Int_Void (factorial 5)"
+            "let factorial = x -> if (x == 0) (\\-> 1) (\\-> x * factorial (x + negate 1))",
+            "let global.main.Void_Void = \\-> global.print.Int_Void (factorial 5)"
         ].joinWithSeparator("\n")) // -> 120
     }
 }

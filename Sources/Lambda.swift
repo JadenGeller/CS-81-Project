@@ -7,7 +7,7 @@
 //
 
 public struct Lambda {
-    public var argumentName: Identifier
+    public var argumentName: Identifier?
     public var implementation: Expression
 }
 
@@ -18,7 +18,7 @@ public func ==(lhs: Lambda, rhs: Lambda) -> Bool {
 
 extension Lambda: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
-        return argumentName.description + " -> " + implementation.description
+        return argumentName?.description ?? "_" + " -> " + implementation.description
     }
     
     public var debugDescription: String {

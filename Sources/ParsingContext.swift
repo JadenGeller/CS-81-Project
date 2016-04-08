@@ -32,7 +32,7 @@ extension ParsingContext {
     
     /// Parses an expression.
     var expression: Parser<Token, Expression> {
-        return looselyBoundExpression
+        return looselyBoundExpression.debug("Exp")
     }
     
     /// Parses a loosely bound expression. This is any sort of expression,
@@ -42,8 +42,8 @@ extension ParsingContext {
         // be parsed fine by infix expression leaving a dangling right arrow and
         // lambda implementation).
         return hold(coalesce(
-            self.lambda.map(Expression.lambda),
-            self.infixExpression
+            self.lambda.map(Expression.lambda).debug("A"),
+            self.infixExpression.debug("B")
         ))
     }
     
@@ -118,6 +118,16 @@ extension ParsingContext {
             let implementation = try self.looselyBoundExpression.parse(state)
             
             return Lambda(argumentName: .bare(argumentName), implementation: implementation)
+        } ?? voidLambda
+    }
+    
+    /// Parses a void lambda.
+    var voidLambda: Parser<Token, Lambda> {
+        return Parser { state in
+            _ = try token(Token.symbol("\\->")).parse(state)
+            let implementation = try self.looselyBoundExpression.parse(state)
+            
+            return Lambda(argumentName: nil, implementation: implementation)
         }
     }
 }
@@ -149,6 +159,8 @@ extension ParsingContext {
             let name = try self.identifier.parse(state)
             _ = try token(.symbol("=")).parse(state)
             let value = try self.expression.parse(state)
+            print("DONE")
+            print(value)
             
             return Statement.binding(name, value)
         }
