@@ -80,6 +80,10 @@ The [Swift style guide](https://swift.org/documentation/api-design-guidelines/) 
 
 While holding office hours, I realized that the Ocaml module system works **very** similiarly to the Swift protocol system. Swift protocols have associated types, they allow you to specify what methods a type must implement, and they allow you to give default implementations of methods if desired. Swift protocols are more powerful in that they also allow new methods to be added (w/ default implementations) whenever a certain associated type conforms to some other protocol.
 
+## Lesson
+
+I should be more careful about working in a git submodule managed by `swift build`. I almost lost a ton of work...
+
 ## Language Design
 
 ### Union Types
