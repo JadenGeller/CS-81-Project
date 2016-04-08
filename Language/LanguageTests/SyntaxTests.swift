@@ -29,7 +29,9 @@ class SyntaxTests: XCTestCase {
     }
 
     func testParseExpression() {
-        print(try! parse(lex("let x = foo 3 + bar 5")))
+//        print(try! parse(lex("let x = foo 3 + bar 5")))
+//        print(try! parse(lex("let x = foo 3 (+) bar 5")))
+//        print(try! parse([.bare("let"), .bare("x"), .symbol("="), .symbol("("), .literal(5), .symbol("*"), .literal(3), .symbol(")")])) // broke :P
     }
 
 //    func testParseStatement() {

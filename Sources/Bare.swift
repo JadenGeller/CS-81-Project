@@ -46,7 +46,7 @@ public func ==(lhs: Bare, rhs: Bare) -> Bool {
 extension Bare {
     init?(token: Token) {
         guard case let .bare(value) = token else { return nil }
-        self.init(value.text)
+        self = value
     }
 }
 

@@ -46,6 +46,6 @@ public func ==(lhs: Symbol, rhs: Symbol) -> Bool {
 extension Symbol {
     init?(token: Token) {
         guard case let .symbol(value) = token else { return nil }
-        self.init(value.text)
+        self = value
     }
 }

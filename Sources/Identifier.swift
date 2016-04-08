@@ -12,6 +12,17 @@ public enum Identifier {
     case symbol(Symbol)
 }
 
+extension Identifier {
+    public var text: String {
+        switch self {
+        case .bare(let bare):
+            return bare.text
+        case .symbol(let symbol):
+            return symbol.text
+        }
+    }
+}
+
 extension Identifier: Equatable { }
 public func ==(lhs: Identifier, rhs: Identifier) -> Bool {
     switch (lhs, rhs) {

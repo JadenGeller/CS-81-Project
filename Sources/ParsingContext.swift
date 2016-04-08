@@ -52,12 +52,12 @@ extension ParsingContext {
     var tightlyBoundExpression: Parser<Token, Expression> {
         return coalesce(
             // Don't parse `callExpression` here else we'll infinite loop.
-            identifierExpression,
-            literalExpression,
+            identifier.map(Expression.identifier),
+            literal.map(Expression.literal),
             between(parenthesis.left, parenthesis.right, parse: looselyBoundExpression)
         )
     }
-    
+        
     /// Parses an infix operator expression tree.
     var infixExpression: Parser<Token, Expression> {
         return operatorExpression(
@@ -78,42 +78,32 @@ extension ParsingContext {
         return (left: token(.symbol("(")), right: token(.symbol(")")))
     }
     
-    /// Parses an literal expression.
-    var literalExpression: Parser<Token, Expression> {
-        return convert{ Literal(token: $0) }.map(Expression.literal)
-    }
-    
-    /// Parses a symbol surrounded by parenthesis.
-    var identifierExpression: Parser<Token, Expression> {
-        return bareIdentifierExpression ?? symbolIdentifierExpression
-    }
-    
-    /// Parses a symbol surrounded by parenthesis.
-    var symbolIdentifierExpression: Parser<Token, Expression> {
-        return between(parenthesis.left, parenthesis.right, parse: symbolIdentifier.map(Expression.identifier))
-    }
-    
-    /// Parses a bare.
-    var bareIdentifierExpression: Parser<Token, Expression> {
-        return bareIdentifier.map(Expression.identifier)
+    /// Parses an literal.
+    var literal: Parser<Token, Literal> {
+        return convert{ Literal(token: $0) }
     }
 }
 
 // MARK: Identifier
 extension ParsingContext {
-    
-    /// Parses a bare word as an identifier.
-    var bareIdentifier: Parser<Token, Identifier> {
-        return convert{ Bare(token: $0) }
-            .require{ !self.keywords.contains($0.text) }
-            .map(Identifier.bare)
+    /// Parses a identifier, which is a bare word or a symbol surrounded with parenthesis.
+    var identifier: Parser<Token, Identifier> {
+        return coalesce(
+            bare.map(Identifier.bare),
+            between(parenthesis.left, parenthesis.right, parse: symbol).map(Identifier.symbol)
+        )
     }
     
-    /// Parses a symbol as an identifier.
-    var symbolIdentifier: Parser<Token, Identifier> {
+    /// Parses a bare word.
+    var bare: Parser<Token, Bare> {
+        return convert{ Bare(token: $0) }
+            .require{ !self.keywords.contains($0.text) }
+    }
+    
+    /// Parses a symbol.
+    var symbol: Parser<Token, Symbol> {
         return convert{ Symbol(token: $0) }
-            .require{ self.symbols.contains($0.description) }
-            .map(Identifier.symbol)
+            .require{ self.symbols.contains($0.text) }
     }
 }
 
@@ -123,7 +113,7 @@ extension ParsingContext {
     /// Parses a lambda.
     var lambda: Parser<Token, Lambda> {
         return Parser { state in
-            let argumentName = try bare.parse(state)
+            let argumentName = try self.bare.parse(state)
             _ = try token(Token.symbol("->")).parse(state)
             let implementation = try self.looselyBoundExpression.parse(state)
             
@@ -156,11 +146,11 @@ extension ParsingContext {
     var statement: Parser<Token, Statement> {
         return Parser { state in
             _ = try self.keyword("let").parse(state)
-            let name = try bare.parse(state)
+            let name = try self.identifier.parse(state)
             _ = try token(.symbol("=")).parse(state)
             let value = try self.expression.parse(state)
             
-            return Statement.binding(.bare(name), value)
+            return Statement.binding(name, value)
         }
     }
 }
@@ -178,16 +168,26 @@ extension ParsingContext {
 private let bare: Parser<Token, Bare> = any().map{ if case let .bare(b) = $0 where !["let"].contains(b.text) { return b } else { throw ParseError.UnableToMatch("Bare") } }
 
 extension Expression {
-    init(infixOp: OperatorExpression<String, Expression>) {
-        switch infixOp {
-        case .infix(let op, let (l, r)):
+    init(operatorExpression: OperatorExpression<String, Expression>) {
+        switch operatorExpression {
+        case .infix(let infixOperator, let (lhs, rhs)):
             self = Expression.call(
-                function: Expression.identifier(Identifier.symbol(Symbol(op))),
+                function: Expression.identifier(.symbol(Symbol(infixOperator))),
                 arguments: [
-                    Expression(infixOp: l),
-                    Expression(infixOp: r)
+                    Expression(operatorExpression: lhs),
+                    Expression(operatorExpression: rhs)
                 ]
             )
+//        case .prefix(let prefixOperator, let value):
+//            self = Expression.call(
+//                function: Expression.identifier(.symbol(Symbol(prefixOperator))),
+//                arguments: [Expression(operatorExpression: value)]
+//            )
+//        case .postfix(let postfixOperator, let value):
+//            self = Expression.call(
+//                function: Expression.identifier(.symbol(Symbol(postfixOperator))),
+//                arguments: [Expression(operatorExpression: value)]
+//            )
         case .value(let v):
             self = v
         }
