@@ -32,6 +32,11 @@
     - [ ] Add metadata for line/column so we can compute newline-followed
 - [ ] Specify infix operators as parsers rather than as an array of symbols
 - [x] Fix parsing order bug
+- [ ] Include type holes in the parsed expression
+    - [ ] Fill in things like A -> B -> C and A -> B for infix and postfix/prefix operators
+- [ ] Should include spacer as a character in addition to new line
+    - [ ] Use as an infix operator (maybe) between two parsers
+    - [ ] Allow easy detection of infix, postfix, prefix (w/o delimiters in the way)
 
 ## Milestone 2 - Typesystem
 

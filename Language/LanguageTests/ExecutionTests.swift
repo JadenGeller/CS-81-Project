@@ -1,4 +1,4 @@
-//
+ //
 //  ExecutionTests.swift
 //  Language
 //
@@ -15,7 +15,7 @@ class ExecutionTests: XCTestCase {
     }
     
     func testFactorial() {
-        try! execute([
+        try! lex([
             "let (*) = global.multiply.Int_Int_Int",
             "let (==) = global.equals.Int_Int_Bool",
             "let (+) = global.add.Int_Int_Int",

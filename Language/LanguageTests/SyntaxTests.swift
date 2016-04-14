@@ -52,6 +52,30 @@ class SyntaxTests: XCTestCase {
             ]), try! parse(lex("let x = 5 * 2 + 2 * 7 + 1")))
     }
     
+//    func testParsePrefixExpression() {
+//        XCTAssertEqual(Program(statements: [
+//            .binding("x", Expression.call(
+//                function: .identifier("-"),
+//                arguments: [
+//                    Expression.call(
+//                        function: .identifier("-"),
+//                        arguments: .literal(5)
+//                    ),
+//                    Expression.call(
+//                        function: .identifier("+"),
+//                        arguments: [
+//                            .literal(3),
+//                            Expression.call(
+//                                function: .identifier("-"),
+//                                arguments: .literal(2)
+//                            )
+//                        ]
+//                    )
+//                ])
+//            )
+//            ]), try! parse(lex("let x = (-5 - 3) + -(-2)")))
+//    }
+    
     func testParseInfixFunction() {
         XCTAssertEqual(Program(statements: [
             .binding("x", Expression.call(

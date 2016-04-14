@@ -48,6 +48,7 @@ extension Expressive.Expression {
 
 let specification = OperatorSpecification(
     declarations: [
+        OperatorDeclaration(symbol: "-", properties: .init(precedence: 5, associativity: .left)),
         OperatorDeclaration(symbol: "==", properties: .init(precedence: 5, associativity: .left)),
         OperatorDeclaration(symbol: "+", properties: .init(precedence: 5, associativity: .left)),
         OperatorDeclaration(symbol: "*", properties: .init(precedence: 6, associativity: .left)),
@@ -57,7 +58,9 @@ let specification = OperatorSpecification(
     ]
 )
 
-let lexOperators = specification.symbols + ["->", "\\->", "::", "=", "(", ")", "[", "]", ".", "~"]
+let lexOperators = (specification.symbols + ["->", "\\->", "::", "=", "(", ")", "[", "]", ".", "~"]).sort {
+    $0.characters.count > $1.characters.count // try longer ones first
+}
 
 public func lex(input: String) throws -> [Token] {
     return try LexingContext(symbols: lexOperators).lex(input)

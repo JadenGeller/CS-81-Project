@@ -21,7 +21,7 @@ public struct ParsingContext {
 extension ParsingContext {
     /// Runs the parser with the specified context.
     public func parse(input: [Token]) throws -> Program {
-        return try (program).parse(input)
+        return try terminating(program).parse(input)
     }
 }
 
@@ -44,9 +44,11 @@ extension ParsingContext {
         return hold(coalesce(
             self.lambda.map(Expression.lambda),
             self.infixExpression
-//            self.prefixExpression,
-//            self.postfixExpression
         ))
+    }
+    
+    var unaryExpression: Parser<Token, Expression> {
+        return prefixExpression ?? postfixExpression ?? tightlyBoundExpression
     }
     
     /// Parses a tightly bound expression. This is any type of expression 
@@ -74,6 +76,30 @@ extension ParsingContext {
                     .map(Expression.identifier)
             }
         ).map(Expression.init)
+    }
+    
+    var prefixExpression: Parser<Token, Expression> {
+        return pair(
+            convert{ Operator(token: $0) }
+                .require{ $0.alignment == TokenAlignment.prefix }
+                .map{ Identifier(String($0)) }
+                .map(Expression.identifier),
+            tightlyBoundExpression
+        ).map { operatorExpression, otherExpression in
+            Expression.call(function: operatorExpression, arguments: otherExpression)
+        }
+    }
+    
+    var postfixExpression: Parser<Token, Expression> {
+        return pair(
+            unaryExpression,
+            convert{ Operator(token: $0) }
+                .require{ $0.alignment == TokenAlignment.prefix }
+                .map{ Identifier(String($0)) }
+                .map(Expression.identifier)
+            ).map { otherExpression, operatorExpression in
+                Expression.call(function: operatorExpression, arguments: otherExpression)
+        }
     }
     
     /// Parses a left or right parenthesis.
