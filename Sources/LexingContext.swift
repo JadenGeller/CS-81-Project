@@ -18,7 +18,7 @@ public struct LexingContext {
 extension LexingContext {
     /// Runs the lexer with the specified context.
     public func lex(input: String) throws -> [Token] {
-        return try terminating(many(token.debug("token").map(Optional.Some).recover{ _ in
+        return try terminating(many(token.map(Optional.Some).recover{ _ in
             space.replace(nil)
         })).parse(input.characters).filter{ $0 != nil }.map{ $0! }
     }

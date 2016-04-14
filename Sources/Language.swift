@@ -52,6 +52,7 @@ let specification = OperatorSpecification(
         OperatorDeclaration(symbol: "==", properties: .init(precedence: 5, associativity: .left)),
         OperatorDeclaration(symbol: "+", properties: .init(precedence: 5, associativity: .left)),
         OperatorDeclaration(symbol: "*", properties: .init(precedence: 6, associativity: .left)),
+        OperatorDeclaration(symbol: "$", properties: .init(precedence: 0, associativity: .left)),
         //        OperatorDeclaration(symbol: "~", properties: .prefix),
         //        OperatorDeclaration(symbol: "!", properties: .prefix),
         //        OperatorDeclaration(symbol: "%", properties: .postfix)

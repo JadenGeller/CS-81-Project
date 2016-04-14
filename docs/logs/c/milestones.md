@@ -37,6 +37,7 @@
 - [ ] Should include spacer as a character in addition to new line
     - [ ] Use as an infix operator (maybe) between two parsers
     - [ ] Allow easy detection of infix, postfix, prefix (w/o delimiters in the way)
+- [ ] Fix right associativity
 
 ## Milestone 2 - Typesystem
 
