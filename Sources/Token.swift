@@ -10,7 +10,8 @@ import Parsley
 import Spork
 
 public enum Token {
-    case symbol(Symbol)
+    case `operator`(Operator)
+    case delimiter(Delimiter)
     case bare(Bare)
     case literal(Literal)
     case newLine
@@ -19,11 +20,13 @@ public enum Token {
 extension Token: Equatable { }
 public func ==(lhs: Token, rhs: Token) -> Bool {
     switch (lhs, rhs) {
-    case let (.symbol(l), .symbol(r)):
+    case let (.`operator`(l), .`operator`(r)):
         return l == r
     case let (.bare(l), .bare(r)):
         return l == r
     case let (.literal(l), .literal(r)):
+        return l == r
+    case let (.delimiter(l), .delimiter(r)):
         return l == r
     case (.newLine, .newLine):
         return true
@@ -34,8 +37,10 @@ public func ==(lhs: Token, rhs: Token) -> Bool {
 extension Token: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
         switch self {
-        case .symbol(let symbol):
+        case .`operator`(let symbol):
             return symbol.description
+        case .delimiter(let delimiter):
+            return delimiter.description
         case .bare(let bare):
             return bare.description
         case .literal(let literal):
@@ -47,12 +52,14 @@ extension Token: CustomStringConvertible, CustomDebugStringConvertible {
     
     public var debugDescription: String {
         switch self {
-        case .symbol(let symbol):
-            return "Token.symbol(\(symbol.description))"
+        case .`operator`(let symbol):
+            return "Token.symbol(\(symbol.debugDescription))"
+        case .delimiter(let delimiter):
+            return "Token.delimiter(\(delimiter.debugDescription))"
         case .bare(let bare):
-            return "Token.bare(\(bare.description))"
+            return "Token.bare(\(bare.debugDescription))"
         case .literal(let literal):
-            return "Token.literal(\(literal.description))"
+            return "Token.literal(\(literal.debugDescription))"
         case .newLine:
             return "Token.newLine"
         }

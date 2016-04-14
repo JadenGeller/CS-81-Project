@@ -1,0 +1,51 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D52F050F9010684D4F2AE718A7BDE033266684E0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "494F6E869693A1C7961D2A84A82849CDA0673284" : 0,
+    "B40494E87C8D7D8F7766F1DB2F07380C58DD56CC" : 0,
+    "D52F050F9010684D4F2AE718A7BDE033266684E0" : 0,
+    "1568948FE14BE3DC13BC3B87ED5311B0FB0C83AD" : 0,
+    "0735FB077B08436E396BA950BBC95C5ACF0DE1D1" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E376DAEA-5021-4E4E-9E28-F93B10368A58",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "494F6E869693A1C7961D2A84A82849CDA0673284" : "CS-81-Project\/Packages\/Gluey-1.6.3\/",
+    "B40494E87C8D7D8F7766F1DB2F07380C58DD56CC" : "CS-81-Project\/Packages\/Expressive-1.0.0\/",
+    "D52F050F9010684D4F2AE718A7BDE033266684E0" : "CS-81-Project\/",
+    "1568948FE14BE3DC13BC3B87ED5311B0FB0C83AD" : "CS-81-Project\/Packages\/Spork-1.1.0\/",
+    "0735FB077B08436E396BA950BBC95C5ACF0DE1D1" : "CS-81-Project\/Packages\/Typist-1.0.0\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Language",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Language\/Language.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JadenGeller\/Typist.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0735FB077B08436E396BA950BBC95C5ACF0DE1D1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JadenGeller\/Spork.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1568948FE14BE3DC13BC3B87ED5311B0FB0C83AD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JadenGeller\/Gluey.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "494F6E869693A1C7961D2A84A82849CDA0673284"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JadenGeller\/Expressive.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B40494E87C8D7D8F7766F1DB2F07380C58DD56CC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/JadenGeller\/CS-81-Project.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D52F050F9010684D4F2AE718A7BDE033266684E0"
+    }
+  ]
+}

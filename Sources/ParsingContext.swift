@@ -21,7 +21,7 @@ public struct ParsingContext {
 extension ParsingContext {
     /// Runs the parser with the specified context.
     public func parse(input: [Token]) throws -> Program {
-        return try terminating(program).parse(input)
+        return try (program).parse(input)
     }
 }
 
@@ -32,7 +32,7 @@ extension ParsingContext {
     
     /// Parses an expression.
     var expression: Parser<Token, Expression> {
-        return looselyBoundExpression.debug("Exp")
+        return looselyBoundExpression
     }
     
     /// Parses a loosely bound expression. This is any sort of expression,
@@ -42,8 +42,10 @@ extension ParsingContext {
         // be parsed fine by infix expression leaving a dangling right arrow and
         // lambda implementation).
         return hold(coalesce(
-            self.lambda.map(Expression.lambda).debug("A"),
-            self.infixExpression.debug("B")
+            self.lambda.map(Expression.lambda),
+            self.infixExpression
+//            self.prefixExpression,
+//            self.postfixExpression
         ))
     }
     
@@ -64,10 +66,11 @@ extension ParsingContext {
             parsing: callExpression,
             groupedBy: parenthesis,
             usingSpecification: operatorSpecification,
-            matching: { string in
-                convert{ Symbol(token: $0) }
+            matching: { (string: String) -> Parser<Token, Expression> in
+                convert{ Operator(token: $0) }
+                    .require{ $0.alignment == TokenAlignment.infix }
                     .require{ $0.text == string }
-                    .map(Identifier.symbol)
+                    .map{ Identifier(String($0)) }
                     .map(Expression.identifier)
             }
         ).map(Expression.init)
@@ -75,7 +78,7 @@ extension ParsingContext {
     
     /// Parses a left or right parenthesis.
     var parenthesis: (left: Parser<Token, Token>, right: Parser<Token, Token>) {
-        return (left: token(.symbol("(")), right: token(.symbol(")")))
+        return (left: token(.delimiter("(")), right: token(.delimiter(")")))
     }
     
     /// Parses an literal.
@@ -89,9 +92,9 @@ extension ParsingContext {
     /// Parses a identifier, which is a bare word or a symbol surrounded with parenthesis.
     var identifier: Parser<Token, Identifier> {
         return coalesce(
-            bare.map(Identifier.bare),
-            between(parenthesis.left, parenthesis.right, parse: symbol).map(Identifier.symbol)
-        )
+            bare.map{ String($0.text) },
+            between(parenthesis.left, parenthesis.right, parse: `operator`).map{ String($0.text) }
+            ).map { Identifier($0) }
     }
     
     /// Parses a bare word.
@@ -100,9 +103,9 @@ extension ParsingContext {
             .require{ !self.keywords.contains($0.text) }
     }
     
-    /// Parses a symbol.
-    var symbol: Parser<Token, Symbol> {
-        return convert{ Symbol(token: $0) }
+    /// Parses an operator.
+    var `operator`: Parser<Token, Operator> {
+        return convert{ Operator(token: $0) }
             .require{ self.symbols.contains($0.text) }
     }
 }
@@ -114,17 +117,17 @@ extension ParsingContext {
     var lambda: Parser<Token, Lambda> {
         return Parser { state in
             let argumentName = try self.bare.parse(state)
-            _ = try token(Token.symbol("->")).parse(state)
+            _ = try token(Token.`operator`(.infix("->"))).parse(state)
             let implementation = try self.looselyBoundExpression.parse(state)
             
-            return Lambda(argumentName: .bare(argumentName), implementation: implementation)
+            return Lambda(argumentName: Identifier(argumentName.text), implementation: implementation)
         } ?? voidLambda
     }
     
     /// Parses a void lambda.
     var voidLambda: Parser<Token, Lambda> {
         return Parser { state in
-            _ = try token(Token.symbol("\\->")).parse(state)
+            _ = try token(Token.`operator`(.infix("\\->"))).parse(state)
             let implementation = try self.looselyBoundExpression.parse(state)
             
             return Lambda(argumentName: nil, implementation: implementation)
@@ -157,10 +160,8 @@ extension ParsingContext {
         return Parser { state in
             _ = try self.keyword("let").parse(state)
             let name = try self.identifier.parse(state)
-            _ = try token(.symbol("=")).parse(state)
+            _ = try token(.`operator`(.infix("="))).parse(state)
             let value = try self.expression.parse(state)
-            print("DONE")
-            print(value)
             
             return Statement.binding(name, value)
         }
@@ -184,7 +185,7 @@ extension Expression {
         switch operatorExpression {
         case .infix(let infixOperator, let (lhs, rhs)):
             self = Expression.call(
-                function: Expression.identifier(.symbol(Symbol(infixOperator))),
+                function: Expression.identifier(Identifier(String(infixOperator.characters))),
                 arguments: [
                     Expression(operatorExpression: lhs),
                     Expression(operatorExpression: rhs)

@@ -9,15 +9,14 @@
 import Darwin
 
 public enum Literal {
-    case integer(sign: Sign, digits: [DecimalDigit])
-    case decimal(sign: Sign, significand: [DecimalDigit], exponent: Int)
+    case integer(digits: [DecimalDigit])
+    case decimal(significand: [DecimalDigit], exponent: Int)
     case string(String)
 }
 
 extension Literal: IntegerLiteralConvertible {
     public init(integerLiteral value: Int) {
         self = .integer(
-            sign: Sign(isPositive: value > 0),
             digits: abs(value).description.characters.map{ DecimalDigit(rawValue: Int(String($0))!)! }
         )
     }
@@ -40,10 +39,10 @@ extension Literal: StringLiteralConvertible {
 extension Literal: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
         switch self {
-        case .integer(let sign, let digits):
-            return String(sign.rawValue) + (digits.map{ String($0.rawValue) }).joinWithSeparator("")
-        case .decimal(let sign, let significand, let exponent):
-            return (Float(Literal.integer(sign: sign, digits: significand).description)! * pow(10, Float(exponent))).description
+        case .integer(let digits):
+            return (digits.map{ String($0.rawValue) }).joinWithSeparator("")
+        case .decimal(let significand, let exponent):
+            return (Float(Literal.integer(digits: significand).description)! * pow(10, Float(exponent))).description
         case .string(let string):
             return string
         }
@@ -51,10 +50,10 @@ extension Literal: CustomStringConvertible, CustomDebugStringConvertible {
     
     public var debugDescription: String {
         switch self {
-        case .integer(let sign, let digits):
-            return "Literal.integer(sign: \(sign), digits: \(digits))"
-        case .decimal(let sign, let significand, let exponent):
-            return "Literal.decimal(sign: \(sign), significand: \(significand), exponent: \(exponent))"
+        case .integer(let digits):
+            return "Literal.integer(digits: \(digits))"
+        case .decimal(let significand, let exponent):
+            return "Literal.decimal(significand: \(significand), exponent: \(exponent))"
         case .string(let string):
             return "Literal.string(\"\(string)\")"
         }
@@ -64,13 +63,14 @@ extension Literal: CustomStringConvertible, CustomDebugStringConvertible {
 extension Literal: Equatable { }
 public func ==(lhs: Literal, rhs: Literal) -> Bool {
     switch (lhs, rhs) {
-    case let (.integer(lsign, ldigits), .integer(rsign, rdigits)):
-        return lsign == rsign && ldigits == rdigits
-    case let (.decimal(lsign, lsignificant, lexponent), .decimal(rsign, rsignificant, rexponent)):
-        return lsign == rsign && lsignificant == rsignificant && lexponent == rexponent
+    case (.integer(let l), .integer(let r)):
+        return l == r
+    case (.decimal(let lSignificand, let lExponent), .decimal(let rSignificand, let rExponent)):
+        return lSignificand == rSignificand && lExponent == rExponent
     case let (.string(l), .string(r)):
         return l == r
-    default: return false
+    default:
+        return false
     }
 }
 

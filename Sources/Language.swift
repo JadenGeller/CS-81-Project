@@ -24,19 +24,14 @@ extension Expressive.Expression {
     init(expression: Language.Expression) {
         switch expression {
         case .lambda(let lambda):
-            self = Expressive.Expression.Capture(Expressive.Lambda.Implementation.Derived(argumentName: lambda.argumentName?.text, declarations: [], value: Expressive.Expression(expression: lambda.implementation)))
+            self = Expressive.Expression.Capture(Expressive.Lambda.Implementation.Derived(argumentName: lambda.argumentName?.name, declarations: [], value: Expressive.Expression(expression: lambda.implementation)))
         case .application(let application):
             self = Expressive.Expression.Invoke(
                 lambda: Expressive.Expression(expression: application.function),
                 argument: Expressive.Expression(expression: application.argument
             ))
         case .identifier(let identifier):
-            switch identifier {
-            case .bare(let bare):
-                self = Expressive.Expression.Lookup([bare.text])
-            case .symbol(let symbol):
-                self = Expressive.Expression.Lookup([String(symbol.text.characters)])
-            }
+            self = Expressive.Expression.Lookup([identifier.name])
         case .literal(let literal):
             // THIS IS GROSS, CLEAN IT UP
             switch literal {
@@ -53,16 +48,16 @@ extension Expressive.Expression {
 
 let specification = OperatorSpecification(
     declarations: [
-        OperatorDeclaration(symbol: "==", properties: .infix(precedence: 5, associativity: .left)),
-        OperatorDeclaration(symbol: "+", properties: .infix(precedence: 5, associativity: .left)),
-        OperatorDeclaration(symbol: "*", properties: .infix(precedence: 6, associativity: .left)),
+        OperatorDeclaration(symbol: "==", properties: .init(precedence: 5, associativity: .left)),
+        OperatorDeclaration(symbol: "+", properties: .init(precedence: 5, associativity: .left)),
+        OperatorDeclaration(symbol: "*", properties: .init(precedence: 6, associativity: .left)),
         //        OperatorDeclaration(symbol: "~", properties: .prefix),
         //        OperatorDeclaration(symbol: "!", properties: .prefix),
         //        OperatorDeclaration(symbol: "%", properties: .postfix)
     ]
 )
 
-let lexOperators = specification.symbols + ["->", "\\->", "::", "=", "(", ")", "[", "]", "."]
+let lexOperators = specification.symbols + ["->", "\\->", "::", "=", "(", ")", "[", "]", ".", "~"]
 
 public func lex(input: String) throws -> [Token] {
     return try LexingContext(symbols: lexOperators).lex(input)
@@ -73,14 +68,16 @@ public func parse(input: [Token]) throws -> Program {
 }
 
 public func execute(program: String) throws {
-    let ast = try parse(lex(program))
-    print(ast)
+    let tokens = try lex(program)
+    print("TOKENS:", tokens.map{ $0.description }.joinWithSeparator(" "))
+    let ast = try parse(tokens)
+    print("AST:", ast.description)
     
     var bindings: [String: Expressive.Expression] = [:]
     for statement in ast.statements {
         switch statement {
-        case .binding(let name, let expr):
-            bindings[name.text] = Expressive.Expression(expression: expr)
+        case .binding(let identifier, let expression):
+            bindings[identifier.name] = Expressive.Expression(expression: expression)
         }
     }
     

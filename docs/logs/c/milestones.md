@@ -7,10 +7,10 @@
    - [ ] Infix operators
       - [x] Operator should not store global precedence/associativity
       - [x] Generalize prefix and postfix operators can eventually be supported
-      - [ ] Make it possible to threat anything starting with a certain symbol as an operator
+      - [ ] Make it possible to treat anything starting with a certain symbol as an operator
    - [x] Remove Matchable/Parsable/Enumerable protocols
    - [ ] Update testcases to work with modifications
-   - [ ] Replace dependency injection with parsing context
+   - [x] Replace dependency injection with parsing context
 - [x] Pretty printer
    - [x] Lexing tokens
    - [x] Parsing tokens
@@ -25,6 +25,13 @@
 - [ ] Determine if infix operator parser gets continually rebuilt
    - [ ] If so, optimize it so that it is only computed once
 - [ ] Write execution tests that can actually be checked for correctness
+- [ ] Implement prefix/postfix operators
+   - [ ] Keep track of spaces around symbols during the lexing stage
+   - [ ] Use spaces around the symbols to parse properly
+- [ ] Make sure every expression is new-line terminated, but mid-expression new lines are allowed
+    - [ ] Add metadata for line/column so we can compute newline-followed
+- [ ] Specify infix operators as parsers rather than as an array of symbols
+- [x] Fix parsing order bug
 
 ## Milestone 2 - Typesystem
 

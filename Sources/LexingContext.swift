@@ -32,10 +32,19 @@ extension LexingContext {
     var token: Parser<Character, Token> {
         return coalesce(
             literal.map(Token.literal),
-            symbol.map(Token.symbol),
+            delimiter.map(Token.delimiter),
+            `operator`.map(Token.`operator`),
             bare.map(Token.bare),
             many1(newLine).replace(Token.newLine)
         )
+    }
+}
+
+// MARK: Delimiter
+extension LexingContext {
+    /// Parses a delimiter.
+    var delimiter: Parser<Character, Delimiter> {
+        return match(Delimiter.all) { Array($0.rawValue.characters) }
     }
 }
 
@@ -46,15 +55,21 @@ extension LexingContext {
         return prepend(
             letter ?? character("_"),
             many(letter ?? digit ?? character("_") ?? character(".") ?? character("[") ?? character("]")) // TEMPORARY ADDITIONS
-        ).withError("bareWord").stringify().map{ Bare($0) }
+            ).withError("bareWord").stringify().map{ Bare($0) }
     }
 }
 
-// MARK: Symbol
+// MARK: Operator
 extension LexingContext {
-    /// Parses a symbol.
-    var symbol: Parser<Character, Symbol> {
-        return match(symbols){ Array($0.characters) }.map{ Symbol($0) }
+    /// Parses an operator.
+    var `operator`: Parser<Character, Operator> {
+        return Parser { state in
+            let hasLeadingSpace = state.lookbehind.map([" ", "\n", "\t"].contains) ?? true
+            let operatorText = try match(self.symbols){ Array($0.characters) }.parse(state)
+            let hasTrailingSpace = state.lookahead.map([" ", "\n", "\t"].contains) ?? true
+            return Operator(operatorText, withSpacing:
+                TokenSpacing(hasLeadingSpace: hasLeadingSpace, hasTrailingSpace: hasTrailingSpace))
+        }
     }
 }
 
@@ -73,18 +88,16 @@ extension LexingContext {
     
     /// Parses an integer literal.
     var integerLiteral: Parser<Character, Literal> {
-        return pair(sign, decimalDigits).map(Literal.integer).withError("integer")
+        return decimalDigits.map(Literal.integer).withError("integer")
     }
     
     /// Parses a decimal literal.
     var decimalLiteral: Parser<Character, Literal> {
         return Parser { state in
-            let sign = try self.sign.parse(state)
             let leftDigits = try self.decimalDigits.parse(state)
             _ = try character(".").parse(state)
             let rightDigits = try self.decimalDigits.parse(state)
             return .decimal(
-                sign: sign,
                 significand: leftDigits + rightDigits,
                 exponent: -rightDigits.count
             )

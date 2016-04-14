@@ -7,50 +7,62 @@
 //
 
 /// Type representing values that can be looked up by name.
-public enum Identifier {
-    case bare(Bare)
-    case symbol(Symbol)
-}
-
-extension Identifier {
-    public var text: String {
-        switch self {
-        case .bare(let bare):
-            return bare.text
-        case .symbol(let symbol):
-            return symbol.text
-        }
+public struct Identifier {
+    public var name: String
+    
+    public init(_ name: String) {
+        self.name = name
     }
 }
+
+extension Identifier: StringLiteralConvertible {
+    public init(extendedGraphemeClusterLiteral value: String) {
+        self.init(stringLiteral: value)
+    }
+    
+    public init(unicodeScalarLiteral value: String) {
+        self.init(stringLiteral: value)
+    }
+    
+    public init(stringLiteral value: String) {
+        self.init(value)
+    }
+}
+
+//extension Identifier {
+//    public var text: String {
+//        switch self {
+//        case .bare(let bare):
+//            return bare.text
+//        case .`operator`(let symbol):
+//            return symbol.text
+//        }
+//    }
+//}
 
 extension Identifier: Equatable { }
 public func ==(lhs: Identifier, rhs: Identifier) -> Bool {
-    switch (lhs, rhs) {
-    case (.bare(let l), .bare(let r)):
-        return l == r
-    case (.symbol(let l), .symbol(let r)):
-        return l == r
-    default:
-        return false
-    }
+    return lhs.name == rhs.name
 }
 
 extension Identifier: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
-        switch self {
-        case .bare(let bare):
-            return bare.description
-        case .symbol(let symbol):
-            return "(" + symbol.description + ")"
-        }
+        return name
+//        switch self {
+//        case .bare(let bare):
+//            return bare.description
+//        case .`operator`(let symbol):
+//            return "(" + symbol.description + ")"
+//        }
     }
     
     public var debugDescription: String {
-        switch self {
-        case .bare(let bare):
-            return "Bare(\(bare.description))"
-        case .symbol(let symbol):
-            return "Symbol(\(symbol.description))"
-        }
+        return "Identifier(\"\(name)\")"
+//        switch self {
+//        case .bare(let bare):
+//            return "Bare(\(bare.description))"
+//        case .`operator`(let symbol):
+//            return "Symbol(\(symbol.description))"
+//        }
     }
 }
