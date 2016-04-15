@@ -1,34 +1,20 @@
 //
-//  Expression.swift
+//  ExpressionNode.swift
 //  Language
 //
-//  Created by Jaden Geller on 2/22/16.
+//  Created by Jaden Geller on 4/14/16.
 //  Copyright © 2016 Jaden Geller. All rights reserved.
 //
 
-public enum Expression {
-    indirect case lambda(Lambda)
-    indirect case application(Application)
+public enum ExpressionNode<Expression: ExpressionType> {
+    indirect case lambda(Lambda<Expression>)
+    indirect case application(Application<Expression>)
     case identifier(Identifier)
     case literal(Literal)
 }
 
-extension Expression {
-    public static func call(function function: Expression, arguments: Expression...) -> Expression {
-        return call(function: function, arguments: arguments)
-    }
-    
-    public static func call(function function: Expression, arguments: [Expression]) -> Expression {
-        guard !arguments.isEmpty else { return function }
-        return call(
-            function: .application(Application(function: function, argument: arguments.first!)),
-            arguments: Array(arguments.dropFirst())
-        )
-    }
-}
-
-extension Expression: Equatable { }
-public func ==(lhs: Expression, rhs: Expression) -> Bool {
+extension ExpressionNode: Equatable { }
+public func ==<Expression: ExpressionType>(lhs: ExpressionNode<Expression>, rhs: ExpressionNode<Expression>) -> Bool {
     switch (lhs, rhs) {
     case (.lambda(let l), .lambda(let r)):
         return l == r
@@ -43,7 +29,7 @@ public func ==(lhs: Expression, rhs: Expression) -> Bool {
     }
 }
 
-extension Expression: CustomStringConvertible, CustomDebugStringConvertible {
+extension ExpressionNode: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
         switch self {
         case .lambda(let lambda):

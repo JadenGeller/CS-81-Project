@@ -6,13 +6,13 @@
 //  Copyright © 2016 Jaden Geller. All rights reserved.
 //
 
-public struct Application {
+public struct Application<Expression: ExpressionType> {
     public var function: Expression
     public var argument: Expression
 }
 
 extension Application: Equatable { }
-public func ==(lhs: Application, rhs: Application) -> Bool {
+public func ==<Expression: ExpressionType>(lhs: Application<Expression>, rhs: Application<Expression>) -> Bool {
     return lhs.function == rhs.function && lhs.argument == rhs.argument
 }
 

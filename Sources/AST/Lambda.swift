@@ -2,17 +2,17 @@
 //  Lambda.swift
 //  Language
 //
-//  Created by Jaden Geller on 4/8/16.
+//  Created by Jaden Geller on 4/14/16.
 //  Copyright © 2016 Jaden Geller. All rights reserved.
 //
 
-public struct Lambda {
+public struct Lambda<Expression: ExpressionType>{
     public var argumentName: Identifier?
     public var implementation: Expression
 }
 
 extension Lambda: Equatable { }
-public func ==(lhs: Lambda, rhs: Lambda) -> Bool {
+public func ==<Expression: ExpressionType>(lhs: Lambda<Expression>, rhs: Lambda<Expression>) -> Bool {
     return lhs.argumentName == rhs.argumentName && lhs.implementation == rhs.implementation
 }
 

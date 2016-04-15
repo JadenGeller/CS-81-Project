@@ -140,7 +140,7 @@ extension ParsingContext {
 extension ParsingContext {
     
     /// Parses a lambda.
-    var lambda: Parser<Token, Lambda> {
+    var lambda: Parser<Token, Lambda<Expression>> {
         return Parser { state in
             let argumentName = try self.bare.parse(state)
             _ = try token(Token.`operator`(.infix("->"))).parse(state)
@@ -151,7 +151,7 @@ extension ParsingContext {
     }
     
     /// Parses a void lambda.
-    var voidLambda: Parser<Token, Lambda> {
+    var voidLambda: Parser<Token, Lambda<Expression>> {
         return Parser { state in
             _ = try token(Token.`operator`(.infix("\\->"))).parse(state)
             let implementation = try self.looselyBoundExpression.parse(state)

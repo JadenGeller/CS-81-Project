@@ -22,7 +22,7 @@ import Expressive
 
 extension Expressive.Expression {
     init(expression: Language.Expression) {
-        switch expression {
+        switch expression.node {
         case .lambda(let lambda):
             self = Expressive.Expression.Capture(Expressive.Lambda.Implementation.Derived(argumentName: lambda.argumentName?.name, declarations: [], value: Expressive.Expression(expression: lambda.implementation)))
         case .application(let application):
