@@ -55,7 +55,7 @@ extension LexingContext {
         return prepend(
             letter ?? character("_"),
             many(letter ?? digit ?? character("_") ?? character(".") ?? character("[") ?? character("]")) // TEMPORARY ADDITIONS
-            ).withError("bareWord").stringify().map{ Bare($0) }
+        ).withError("bareWord").stringify().map{ Bare($0) }
     }
 }
 

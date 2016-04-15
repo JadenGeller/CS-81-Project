@@ -8,9 +8,9 @@
 
 public struct Expression: ExpressionType {
     public var node: Expression.Node
-    public var type: Type?
+    public var type: Type
     
-    public init(_ node: Expression.Node, type: Type? = nil) {
+    public init(_ node: Expression.Node, type: Type = nil) {
         self.node = node
         self.type = type
     }
@@ -34,19 +34,19 @@ extension Expression {
         return Expression(.literal(value))
     }
     
-    public static func lambda(value: Lambda<Expression>, type: Type?) -> Expression {
+    public static func lambda(value: Lambda<Expression>, type: Type) -> Expression {
         return Expression(.lambda(value), type: type)
     }
     
-    public static func application(value: Application<Expression>, type: Type?) -> Expression {
+    public static func application(value: Application<Expression>, type: Type) -> Expression {
         return Expression(.application(value), type: type)
     }
     
-    public static func identifier(value: Identifier, type: Type?) -> Expression {
+    public static func identifier(value: Identifier, type: Type) -> Expression {
         return Expression(.identifier(value), type: type)
     }
     
-    public static func literal(value: Literal, type: Type?) -> Expression {
+    public static func literal(value: Literal, type: Type) -> Expression {
         return Expression(.literal(value), type: type)
     }
 
@@ -70,7 +70,7 @@ public func ==(lhs: Expression, rhs: Expression) -> Bool {
 
 extension Expression: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
-        if let type = type {
+        if type != nil {
             return "(" + node.description + " :: " + type.description + ")"
         } else {
             return node.description
@@ -78,7 +78,7 @@ extension Expression: CustomStringConvertible, CustomDebugStringConvertible {
     }
     
     public var debugDescription: String {
-        if let type = type {
+        if type != nil {
             return "Expression(\(node.debugDescription), type: \(type.debugDescription))"
         } else {
             return "Expression(\(node.debugDescription))"

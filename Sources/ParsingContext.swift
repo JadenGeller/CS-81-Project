@@ -211,7 +211,10 @@ extension Expression {
         switch operatorExpression {
         case .infix(let infixOperator, let (lhs, rhs)):
             self = Expression.call(
-                function: Expression.identifier(Identifier(String(infixOperator.characters))),
+                function: Expression.identifier(
+                    Identifier(String(infixOperator.characters)),
+                    type: .function(.function(nil, nil), nil)
+                ),
                 arguments: [
                     Expression(operatorExpression: lhs),
                     Expression(operatorExpression: rhs)
@@ -219,12 +222,18 @@ extension Expression {
             )
 //        case .prefix(let prefixOperator, let value):
 //            self = Expression.call(
-//                function: Expression.identifier(.symbol(Symbol(prefixOperator))),
+//                function: Expression.identifier(
+//                    Identifier(String(prefixOperator)),
+//                    type: .function(.unknown, .unknown)
+//                ),
 //                arguments: [Expression(operatorExpression: value)]
 //            )
 //        case .postfix(let postfixOperator, let value):
 //            self = Expression.call(
-//                function: Expression.identifier(.symbol(Symbol(postfixOperator))),
+//                function: Expression.identifier(
+//                    Identifier(String(postfixOperator)),
+//                    type: .function(.unknown, .unknown)
+//                )m
 //                arguments: [Expression(operatorExpression: value)]
 //            )
         case .value(let v):
