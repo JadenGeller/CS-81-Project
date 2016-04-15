@@ -30,7 +30,8 @@
 		4DB543FD1CC0F79C00B26A28 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB543FC1CC0F79C00B26A28 /* Expression.swift */; };
 		4DB544001CC0FDAD00B26A28 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB543FE1CC0FDAD00B26A28 /* Application.swift */; };
 		4DB544011CC0FDAD00B26A28 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB543FF1CC0FDAD00B26A28 /* Identifier.swift */; };
-		4DB544041CC1075C00B26A28 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB544031CC1075C00B26A28 /* Type.swift */; };
+		4DB544091CC1127900B26A28 /* ConcreteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB544081CC1127900B26A28 /* ConcreteType.swift */; };
+		4DB5440B1CC1127D00B26A28 /* TypeBoundExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB5440A1CC1127D00B26A28 /* TypeBoundExpression.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +116,8 @@
 		4DB543FC1CC0F79C00B26A28 /* Expression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = ../../Sources/AST/Expression.swift; sourceTree = "<group>"; };
 		4DB543FE1CC0FDAD00B26A28 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Application.swift; path = ../../Sources/AST/Application.swift; sourceTree = "<group>"; };
 		4DB543FF1CC0FDAD00B26A28 /* Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Identifier.swift; path = ../../Sources/AST/Identifier.swift; sourceTree = "<group>"; };
-		4DB544031CC1075C00B26A28 /* Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Type.swift; path = ../../Sources/Types/Type.swift; sourceTree = "<group>"; };
+		4DB544081CC1127900B26A28 /* ConcreteType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConcreteType.swift; path = ../../Sources/Typing/ConcreteType.swift; sourceTree = "<group>"; };
+		4DB5440A1CC1127D00B26A28 /* TypeBoundExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeBoundExpression.swift; path = ../../Sources/Typing/TypeBoundExpression.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,9 +250,9 @@
 			isa = PBXGroup;
 			children = (
 				4DA8E5241C988EE200192F80 /* Language.swift */,
-				4DB544021CC1073C00B26A28 /* Types */,
 				4DB543EC1CC0BD4B00B26A28 /* AST */,
 				4DB543F31CC0BD8D00B26A28 /* Syntax */,
+				4DB544021CC1073C00B26A28 /* Typing */,
 				4DA9CC801C7C034400D004BF /* Info.plist */,
 			);
 			path = Language;
@@ -288,12 +290,21 @@
 			name = Syntax;
 			sourceTree = "<group>";
 		};
-		4DB544021CC1073C00B26A28 /* Types */ = {
+		4DB544021CC1073C00B26A28 /* Typing */ = {
 			isa = PBXGroup;
 			children = (
-				4DB544031CC1075C00B26A28 /* Type.swift */,
+				4DB544081CC1127900B26A28 /* ConcreteType.swift */,
+				4DB544051CC110B800B26A28 /* Typechecking */,
 			);
-			name = Types;
+			name = Typing;
+			sourceTree = "<group>";
+		};
+		4DB544051CC110B800B26A28 /* Typechecking */ = {
+			isa = PBXGroup;
+			children = (
+				4DB5440A1CC1127D00B26A28 /* TypeBoundExpression.swift */,
+			);
+			name = Typechecking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,15 +484,16 @@
 				4D0514841C98202C00350DB6 /* Operator.swift in Sources */,
 				4D4C419F1CB87B9000055D86 /* TokenAlignment.swift in Sources */,
 				4DB543F91CC0BEB200B26A28 /* Lambda.swift in Sources */,
-				4DB544041CC1075C00B26A28 /* Type.swift in Sources */,
 				4D0514881C98204900350DB6 /* Literal.swift in Sources */,
 				4DB543FB1CC0F5BF00B26A28 /* ExpressionType.swift in Sources */,
 				4D4C41991CB7DCD300055D86 /* LexingContext.swift in Sources */,
 				4DB544001CC0FDAD00B26A28 /* Application.swift in Sources */,
+				4DB544091CC1127900B26A28 /* ConcreteType.swift in Sources */,
 				4DA8E52C1C988EEB00192F80 /* Language.swift in Sources */,
 				4D481EB71C988B9700C42889 /* Program.swift in Sources */,
 				4D481E3C1C987BD200C42889 /* Statement.swift in Sources */,
 				4D4C41A11CB87BA300055D86 /* TokenSpacing.swift in Sources */,
+				4DB5440B1CC1127D00B26A28 /* TypeBoundExpression.swift in Sources */,
 				4DB543F71CC0BDDC00B26A28 /* ExpressionNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

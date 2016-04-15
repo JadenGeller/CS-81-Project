@@ -8,9 +8,9 @@
 
 public struct Expression: ExpressionType {
     public var node: Expression.Node
-    public var type: Type
+    public var type: ConcreteType
     
-    public init(_ node: Expression.Node, type: Type = nil) {
+    public init(_ node: Expression.Node, type: ConcreteType = nil) {
         self.node = node
         self.type = type
     }
@@ -34,19 +34,19 @@ extension Expression {
         return Expression(.literal(value))
     }
     
-    public static func lambda(value: Lambda<Expression>, type: Type) -> Expression {
+    public static func lambda(value: Lambda<Expression>, type: ConcreteType) -> Expression {
         return Expression(.lambda(value), type: type)
     }
     
-    public static func application(value: Application<Expression>, type: Type) -> Expression {
+    public static func application(value: Application<Expression>, type: ConcreteType) -> Expression {
         return Expression(.application(value), type: type)
     }
     
-    public static func identifier(value: Identifier, type: Type) -> Expression {
+    public static func identifier(value: Identifier, type: ConcreteType) -> Expression {
         return Expression(.identifier(value), type: type)
     }
     
-    public static func literal(value: Literal, type: Type) -> Expression {
+    public static func literal(value: Literal, type: ConcreteType) -> Expression {
         return Expression(.literal(value), type: type)
     }
 
@@ -65,7 +65,7 @@ extension Expression {
 
 extension Expression: Equatable { }
 public func ==(lhs: Expression, rhs: Expression) -> Bool {
-    return lhs.node == rhs.node
+    return lhs.node == rhs.node && lhs.type == rhs.type
 }
 
 extension Expression: CustomStringConvertible, CustomDebugStringConvertible {

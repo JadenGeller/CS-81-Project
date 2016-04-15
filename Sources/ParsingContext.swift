@@ -213,7 +213,7 @@ extension Expression {
             self = Expression.call(
                 function: Expression.identifier(
                     Identifier(String(infixOperator.characters)),
-                    type: .function(.function(nil, nil), nil)
+                    type: .infixOperator
                 ),
                 arguments: [
                     Expression(operatorExpression: lhs),

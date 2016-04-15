@@ -31,17 +31,17 @@ class SyntaxTests: XCTestCase {
     func testParserOperatorPrecedence() {
         XCTAssertEqual(Program(statements: [
             .binding("x", Expression.call(
-                function: .identifier("+"),
+                function: .identifier("+", type: .infixOperator),
                 arguments: [
                     Expression.call(
-                        function: .identifier("*"),
+                        function: .identifier("*", type: .infixOperator),
                         arguments: .literal(5), .literal(2)
                     ),
                     Expression.call(
-                        function: .identifier("+"),
+                        function: .identifier("+", type: .infixOperator),
                         arguments: [
                             Expression.call(
-                                function: .identifier("*"),
+                                function: .identifier("*", type: .infixOperator),
                                 arguments: .literal(2), .literal(7)
                             ),
                             .literal(1)
@@ -79,7 +79,7 @@ class SyntaxTests: XCTestCase {
     func testParseInfixFunction() {
         XCTAssertEqual(Program(statements: [
             .binding("x", Expression.call(
-                function: .identifier("+"),
+                function: .identifier("+", type: .infixOperator),
                 arguments: [
                     Expression.call(function: .identifier("foo"), arguments: .literal(3)),
                     Expression.call(function: .identifier("bar"), arguments: .literal(5))
