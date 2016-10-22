@@ -1,3 +1,5 @@
+(Note that this is currently incomplete, and I'm planning to come back to once I have time.)
+
 # CS 81 Compiler Project
 The goal of this project is to build a programming language entirely from scratch (e.g. building the parsing libraries, the type checker, etc.) that has a strong type system and eventually compiles down to LLVM IR.
 
